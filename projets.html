@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Réalisations - Harouna</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<script src="script-animation.js"></script>
+<body>
+    <nav class="navbar">
+        <div class="max-width">
+            <div class="logo"><a href="index.html">Harouna<span class="gradient-text">.</span></a></div>
+            <ul class="menu">
+                <li><a href="index.html">Accueil</a></li>
+                <li><a href="competences.html">Compétences</a></li>
+                <li><a href="projets.html">Réalisations</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <h2 class="title">Mes <span class="gradient-text">Réalisations</span></h2>
+    
+    <div class="grid-container" style="padding-top: 20px;">
+        
+        <div class="glass-card" style="text-align: left;">
+            <div style="display: flex; align-items: center; margin-bottom: 15px;">
+                <i class="fas fa-code fa-lg" style="color: var(--accent); margin-right: 10px;"></i>
+                <h3 class="gradient-text">KooFourchette</h3>
+            </div>
+            <p style="color: var(--text-dim); font-size: 0.95rem; margin-bottom: 15px;">
+                Conception d’un site web dynamique en HTML, CSS et PHP avec connexion à une base de données MySQL. Hébergement sur machine virtuelle Ubuntu avec configuration réseau avancée (NAT → Pont, IP statique), routage, serveur FTP de sauvegarde et gestion de versions avec Git[cite: 44, 48].
+            </p>
+            <div style="display: flex; gap: 10px;">
+                <span style="font-size: 0.7rem; background: rgba(0,210,255,0.1); padding: 4px 8px; border-radius: 5px; border: 1px solid var(--accent);">Web</span>
+                <span style="font-size: 0.7rem; background: rgba(0,210,255,0.1); padding: 4px 8px; border-radius: 5px; border: 1px solid var(--accent);">PHP/MySQL</span>
+            </div>
+        </div>
+
+        <div class="glass-card" style="text-align: left;">
+            <div style="display: flex; align-items: center; margin-bottom: 15px;">
+                <i class="fas fa-shield-alt fa-lg" style="color: #ff004f; margin-right: 10px;"></i>
+                <h3 style="color: #ff004f;">Sécurité Web</h3>
+            </div>
+            <p style="color: var(--text-dim); font-size: 0.95rem; margin-bottom: 15px;">
+                Développement d’une application PHP/MySQL déployée sur machine virtuelle[cite: 48, 52]. Analyse et démonstration d’attaques (SQLi, XSS, CSRF, MITM) puis sécurisation par durcissement du code et de l’infrastructure.
+            </p>
+            <div style="display: flex; gap: 10px;">
+                <span style="font-size: 0.7rem; background: rgba(255,0,79,0.1); padding: 4px 8px; border-radius: 5px; border: 1px solid #ff004f;">Cybersécurité</span>
+            </div>
+        </div>
+
+        <div class="glass-card" style="text-align: left;">
+            <div style="display: flex; align-items: center; margin-bottom: 15px;">
+                <i class="fab fa-windows fa-lg" style="color: #00a4ef; margin-right: 10px;"></i>
+                <h3 style="color: #00a4ef;">Active Directory</h3>
+            </div>
+            <p style="color: var(--text-dim); font-size: 0.95rem; margin-bottom: 15px;">
+                Mise en place d’une infrastructure sous Windows Server : création du domaine, gestion des utilisateurs/groupes, configuration DNS et DHCP, déploiement de GPO et administration des services réseau en environnement virtualisé.
+            </p>
+            <div style="display: flex; gap: 10px;">
+                <span style="font-size: 0.7rem; background: rgba(0,164,239,0.1); padding: 4px 8px; border-radius: 5px; border: 1px solid #00a4ef;">Windows Server</span>
+            </div>
+        </div>
+
+        <div class="glass-card" style="text-align: left;">
+            <div style="display: flex; align-items: center; margin-bottom: 15px;">
+                <i class="fab fa-linux fa-lg" style="color: #f5ba1a; margin-right: 10px;"></i>
+                <h3 style="color: #f5ba1a;">Infrastructure GLPI</h3>
+            </div>
+            <p style="color: var(--text-dim); font-size: 0.95rem; margin-bottom: 15px;">
+                Déploiement sur Debian d'une solution de gestion de parc et d'incidents : installation de la pile LAMP (Apache, MySQL, PHP), inventaire automatisé et mise en place du système de ticketing.
+            </p>
+            <div style="display: flex; gap: 10px;">
+                <span style="font-size: 0.7rem; background: rgba(245,186,26,0.1); padding: 4px 8px; border-radius: 5px; border: 1px solid #f5ba1a;">Linux</span>
+                <span style="font-size: 0.7rem; background: rgba(245,186,26,0.1); padding: 4px 8px; border-radius: 5px; border: 1px solid #f5ba1a;">GLPI</span>
+            </div>
+        </div>
+
+    </div>
+
+    <div style="max-width: 1200px; margin: 40px auto; padding: 0 30px;">
+        <div class="glass-card" style="border-style: dashed; text-align: center;">
+            <p style="color: var(--text-dim);">D'autres projets sont disponibles sur mon <a href="https://github.com/Harouna05102004" target="_blank" class="gradient-text" style="text-decoration: none;">GitHub</a>.</p>
+        </div>
+    </div>
+</body>
+</html>

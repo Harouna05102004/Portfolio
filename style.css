@@ -1,0 +1,115 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap');
+
+:root {
+    --bg-color: #0a0a0a;
+    --card-bg: rgba(255, 255, 255, 0.05);
+    --primary-gradient: linear-gradient(135deg, #00d2ff 0%, #9d50bb 100%);
+    --text-main: #ffffff;
+    --text-dim: #b3b3b3;
+    --accent: #00d2ff;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+    background-color: var(--bg-color);
+    color: var(--text-main);
+    line-height: 1.6;
+    overflow-x: hidden;
+}
+
+/* Navigation */
+.navbar {
+    position: fixed;
+    width: 100%;
+    padding: 20px 0;
+    background: rgba(10, 10, 10, 0.8);
+    backdrop-filter: blur(10px);
+    z-index: 1000;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.max-width {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo a {
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: #fff;
+    text-decoration: none;
+}
+
+.menu {
+    display: flex;
+    list-style: none;
+}
+
+.menu li a {
+    margin-left: 30px;
+    text-decoration: none;
+    color: var(--text-dim);
+    transition: 0.3s;
+}
+
+.menu li a:hover { color: #fff; text-shadow: 0 0 10px var(--accent); }
+
+/* Bento Grid & Cards */
+.bento-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 20px;
+    padding: 120px 30px 50px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.bento-item {
+    background: var(--card-bg);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 24px;
+    padding: 30px;
+    transition: 0.3s;
+}
+
+.bento-item:hover { transform: translateY(-5px); border-color: var(--accent); }
+
+.hero-card { grid-column: span 2; }
+.profile-card { grid-column: span 1; }
+.social-card { grid-column: span 1; }
+.focus-card { grid-column: span 2; }
+
+/* Elements */
+.gradient-text { background: var(--primary-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; font-weight: 700; }
+
+.status-badge { background: rgba(0, 210, 255, 0.1); border: 1px solid var(--accent); padding: 5px 15px; border-radius: 20px; font-size: 0.8rem; display: inline-block; margin-bottom: 15px; }
+
+.dot { height: 8px; width: 8px; background-color: #00ff88; border-radius: 50%; display: inline-block; margin-right: 5px; box-shadow: 0 0 10px #00ff88; }
+
+.btn-primary { background: var(--primary-gradient); padding: 12px 25px; border-radius: 50px; color: white; text-decoration: none; font-weight: 600; display: inline-block; margin-top: 20px; }
+
+.glass-card { background: var(--card-bg); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 20px; padding: 30px; margin-bottom: 20px; }
+
+.grid-container { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; padding: 120px 30px; max-width: 1200px; margin: 0 auto; }
+
+.title { text-align: center; font-size: 2.5rem; margin-bottom: 40px; padding-top: 100px; }
+
+#bg-canvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1; /* Pour rester derrière le texte */
+    background: radial-gradient(circle at center, #0f172a 0%, #020617 100%);
+}
