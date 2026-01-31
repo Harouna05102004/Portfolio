@@ -23,6 +23,7 @@ function animate() {
     ctx.fillStyle = "rgba(0, 210, 255, 0.4)";
     particles.forEach(p => {
         p.x += p.vx; p.y += p.vy;
+
         if (p.x < 0 || p.x > canvas.width) p.vx *= -1;
         if (p.y < 0 || p.y > canvas.height) p.vy *= -1;
         ctx.beginPath();

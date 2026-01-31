@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DHCP & DNS | Harouna</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <canvas id="bg-canvas"></canvas>
+    <nav class="navbar"><div class="max-width"><div class="logo"><a href="index.html">Harouna<span class="gradient-text">.</span></a></div></div></nav>
+
+    <main class="detail-page">
+        <a href="competences.html" class="back-btn"><i class="fas fa-arrow-left"></i> Retour</a>
+        <div class="status-badge"><span class="dot"></span> Services Réseau</div>
+        <h1 class="title" style="text-align: left; padding-top: 0;">Gestion du <span class="gradient-text">DHCP & DNS</span></h1>
+
+        <section class="realisation">
+            <h2><i class="fas fa-address-card"></i> Adressage Dynamique (DHCP)</h2>
+            <p>Automatisation de la distribution des adresses IP sur les différents LAN.</p>
+            <ul>
+                <li>Configuration de pools d'adresses sur routeur Cisco et serveur Windows.</li>
+                <li>Exclusion des adresses sensibles (Passerelles, Serveurs).</li>
+                <li><strong>Relais DHCP :</strong> Utilisation de l'<code>ip helper-address</code> pour distribuer des IP à travers des routeurs.</li>
+            </ul>
+        </section>
+
+        
+
+        <section class="realisation">
+            <h2><i class="fas fa-globe"></i> Résolution de Noms (DNS)</h2>
+            <p>Assurer la correspondance entre les noms de domaine et les adresses IP.</p>
+            <ul>
+                <li>Configuration de zones de recherche directes et inverses.</li>
+                <li>Création d'enregistrements d'hôtes (A) et d'alias (CNAME).</li>
+            </ul>
+            <div class="evidence"><i class="fas fa-check"></i> <strong>Test :</strong> Validation via <code>nslookup efrei.local</code>.</div>
+        </section>
+    </main>
+    <script src="script-animation.js"></script>
+</body>
+</html>

@@ -3,16 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Harouna Diakite | Portfolio</title>
+    <title>Harouna | Portfolio</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body>
+    <canvas id="bg-canvas"></canvas>
     <nav class="navbar">
-        <div class="max-width">
+        <div class="max-width nav-content">
             <div class="logo"><a href="index.html">Harouna<span class="gradient-text">.</span></a></div>
             <ul class="menu">
-                <li><a href="index.html">Accueil</a></li>
+                <li><a href="index.html" class="active">Accueil</a></li>
                 <li><a href="competences.html">Compétences</a></li>
                 <li><a href="projets.html">Réalisations</a></li>
                 <li><a href="contact.html">Contact</a></li>
@@ -20,41 +21,70 @@
         </div>
     </nav>
 
-    <main class="bento-container">
-        <div class="bento-item hero-card" style="display: flex; align-items: center; gap: 30px; flex-wrap: wrap; justify-content: space-between;">
-            <div style="flex: 1; min-width: 300px;">
-                <div class="status-badge"><span class="dot"></span> Recherche de stage • Mai 2026</div>
-                <h1>Harouna <span class="gradient-text">Diakite</span></h1>
-                <h2 style="font-size: 1.2rem; margin-bottom: 15px;">Étudiant en BTS SIO (SISR) à Efrei Paris</h2>
-                <p>Passionné par le développement web, les systèmes réseaux et la cybersécurité. Actuellement en formation pour devenir administrateur système et réseau.</p>
-                <div class="hero-btns">
-                    <a href="projets.html" class="btn-primary">Découvrir mes projets</a>
+    <main class="max-width" style="padding-top: 120px;">
+        <div class="bento-container" style="display: grid; grid-template-columns: 2fr 1fr; gap: 20px;">
+            
+            <div class="glass-card" style="display: flex; justify-content: space-between; align-items: center; padding: 40px;">
+                <div class="hero-text" style="max-width: 60%;">
+                    <div class="status-badge" style="background: rgba(0, 210, 255, 0.1); font-size: 0.75rem; margin-bottom: 15px;">
+                        <span class="dot"></span> Recherche de stage • Mai 2026
+                    </div>
+                    <h1 style="font-size: 2.5rem; margin-bottom: 10px;">Harouna <span class="gradient-text">Diakite</span></h1>
+                    <h2 style="font-size: 1.2rem; margin-bottom: 20px;">Étudiant en BTS SIO (SISR) à Efrei Paris</h2>
+                    <p style="color: var(--text-dim); margin-bottom: 25px;">
+                        Passionné par le développement web, les systèmes réseaux et la cybersécurité. Actuellement en formation pour devenir administrateur système et réseau.
+                    </p>
+                    <a href="projets.html" class="btn-primary" style="text-decoration: none;">Découvrir mes projets</a>
+                </div>
+                
+                <div class="photo-container" style="border: 2px solid var(--accent); border-radius: 20px; overflow: hidden; width: 220px; height: 220px;">
+                    <img src="photo-harouna.png" alt="Harouna Diakite" style="width: 100%; height: 100%; object-fit: cover;">
                 </div>
             </div>
-            
-            <div style="width: 220px; height: 220px; border-radius: 24px; overflow: hidden; border: 3px solid #00d2ff; padding: 5px;">
-                <img src="images/photo-harouna.jpg" alt="Harouna Diakite" style="width: 100%; height: 100%; object-fit: cover; border-radius: 18px;">
+
+            <div class="glass-card" style="padding: 30px;">
+                <h3 style="margin-bottom: 20px;"><i class="fas fa-map-marker-alt" style="color: #ff004f;"></i> Localisation</h3>
+                <p style="margin-bottom: 10px;"><i class="fas fa-thumbtack" style="color: #ff004f; width: 20px;"></i> Montmagny (95360)</p>
+                <p style="margin-bottom: 20px;"><i class="fas fa-car" style="color: #ff004f; width: 20px;"></i> Permis B (Véhiculé)</p>
+                <div style="border: 1px dashed var(--accent); padding: 10px; border-radius: 10px; font-size: 0.9rem; color: var(--accent);">
+                    <i class="fas fa-bus"></i> Mobile sur toute l'Île-de-France
+                </div>
+            </div>
+
+            <div class="glass-card" style="padding: 30px;">
+                <h3 style="margin-bottom: 15px;">Me joindre</h3>
+                <p style="margin-bottom: 10px;"><i class="fas fa-envelope" style="margin-right: 10px;"></i> Email</p>
+                <p><i class="fab fa-linkedin" style="margin-right: 10px;"></i> LinkedIn</p>
+            </div>
+
+            <div class="glass-card" style="padding: 30px;">
+                <h3 style="margin-bottom: 15px;">Technologies Maîtrisées</h3>
+                <p style="font-size: 0.9rem; color: var(--accent); line-height: 1.8;">
+                    Python, HTML/CSS, MySQL, Cisco Packet Tracer, Windows Server, VirtualBox, GLPI
+                </p>
+            </div>
+
+        </div>
+
+        <div class="grid-container" style="margin-top: 40px;">
+            <div class="glass-card" style="text-align: center;">
+                <i class="fas fa-server fa-2x" style="color: var(--accent); margin-bottom: 15px;"></i>
+                <h3>Administration</h3>
+                <p style="color: var(--text-dim);">Windows Server & Linux</p>
+            </div>
+            <div class="glass-card" style="text-align: center;">
+                <i class="fas fa-network-wired fa-2x" style="color: var(--accent); margin-bottom: 15px;"></i>
+                <h3>Réseaux</h3>
+                <p style="color: var(--text-dim);">Cisco, VLANs & VPN</p>
+            </div>
+            <div class="glass-card" style="text-align: center;">
+                <i class="fas fa-shield-alt fa-2x" style="color: var(--accent); margin-bottom: 15px;"></i>
+                <h3>Sécurité</h3>
+                <p style="color: var(--text-dim);">Pentest & Durcissement</p>
             </div>
         </div>
-        <div class="bento-item profile-card">
-            <h3 style="margin-bottom: 15px;">Localisation</h3>
-            <p>📍 <strong>Montmagny (95360)</strong></p>
-            <p>🚗 <strong>Permis B</strong></p>
-            <p style="margin-top:15px; font-size: 0.9rem; color: var(--accent); font-weight: 600;">
-                Étudiant @ Efrei Paris
-            </p>
-        </div>
-
-        <div class="bento-item social-card" style="display: flex; flex-direction: column; justify-content: center; gap: 15px;">
-            <h3>Me joindre</h3>
-            <a href="mailto:diakiteharouna693@gmail.com" style="color:white; text-decoration:none;"><i class="fas fa-envelope"></i> Email</a>
-            <a href="https://www.linkedin.com/in/harouna-diakite-b10a23265" style="color:white; text-decoration:none;"><i class="fab fa-linkedin"></i> LinkedIn</a>
-        </div>
-
-        <div class="bento-item focus-card">
-            <h3>Technologies Maîtrisées</h3>
-            <p class="gradient-text" style="font-size: 1.1rem;">Python, HTML/CSS, MySQL, Cisco Packet Tracer, Windows Server, VirtualBox, GLPI</p>
-        </div>
     </main>
+
+    <script src="script-animation.js"></script>
 </body>
 </html>

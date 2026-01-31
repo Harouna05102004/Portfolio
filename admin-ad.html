@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Détails - Active Directory | Harouna</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <canvas id="bg-canvas"></canvas>
+
+    <nav class="navbar">
+        <div class="max-width">
+            <div class="logo"><a href="index.html">Harouna<span class="gradient-text">.</span></a></div>
+            <ul class="menu">
+                <li><a href="index.html">Accueil</a></li>
+                <li><a href="competences.html">Compétences</a></li>
+                <li><a href="projets.html">Réalisations</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main class="detail-page">
+        <a href="competences.html" class="back-btn"><i class="fas fa-arrow-left"></i> Retour aux compétences</a>
+        
+        <div class="status-badge"><span class="dot"></span> Administration Système</div>
+        <h1 class="title" style="text-align: left; padding-top: 0;">Active Directory <span class="gradient-text">& GPO</span></h1>
+
+        <section class="realisation">
+            <h2><i class="fas fa-server"></i> Infrastructure efrei.local</h2>
+            <p>Mise en place d'un contrôleur de domaine Windows Server 2019 pour centraliser la gestion des identités et des ressources.</p>
+            <ul>
+                <li>Installation et promotion du rôle <strong>AD DS</strong>.</li>
+                <li>Configuration du service <strong>DNS</strong> intégré pour la résolution interne.</li>
+                <li>Création d'une arborescence d'<strong>Unités d'Organisation (OU)</strong> : Direction, RH, Informatique, Marketing.</li>
+            </ul>
+        </section>
+
+        
+
+        <section class="realisation">
+            <h2><i class="fas fa-shield-alt"></i> Sécurisation par GPO</h2>
+            <p>Déploiement de stratégies de groupe pour uniformiser la sécurité du parc informatique.</p>
+            <ul>
+                <li><strong>Politiques de mot de passe :</strong> Complexité requise et historique des mots de passe.</li>
+                <li><strong>Redirection de dossiers :</strong> Centralisation des documents utilisateurs sur le serveur.</li>
+                <li><strong>Restrictions :</strong> Verrouillage automatique des sessions et restriction des accès au panneau de configuration.</li>
+            </ul>
+            <div class="evidence">
+                <i class="fas fa-check-circle"></i> <strong>Résultat :</strong> Validation de l'application des GPO via la commande <code>gpresult /r</code> sur les postes clients.
+            </div>
+        </section>
+
+        <section class="realisation">
+            <h2><i class="fas fa-sync"></i> Profils Itinérants</h2>
+            <p>Configuration pour permettre aux utilisateurs de retrouver leur environnement de travail sur n'importe quel poste du domaine.</p>
+            <div class="evidence" style="border-left-color: var(--accent);">
+                <i class="fas fa-info-circle"></i> Utilisation de partages réseau avec permissions NTFS spécifiques pour assurer la confidentialité des données.
+            </div>
+        </section>
+    </main>
+
+    <script src="script-animation.js"></script>
+</body>
+</html>
