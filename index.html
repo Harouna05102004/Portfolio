@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Harouna | Portfolio</title>
     <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
 </head>
 <body>
     <canvas id="bg-canvas"></canvas>
@@ -17,69 +17,65 @@
                 <li><a href="index.html" class="active">Accueil</a></li>
                 <li><a href="competences.html">Compétences</a></li>
                 <li><a href="projets.html">Réalisations</a></li>
+                <li><a href="contact.html">Contact</a></li>
             </ul>
         </div>
     </nav>
 
-    <main class="max-width" style="padding-top: 120px;">
+    <main class="max-width" style="padding-top: 140px;">
         <div class="bento-grid">
             
             <div class="glass-card profile-card">
                 <div class="hero-text">
                     <div class="status-badge">
-                        <span class="dot"></span> Recherche de stage • Mai 2026
+                        <span class="dot"></span> Disponible • Mai 2026
                     </div>
                     <h1>Harouna <span class="gradient-text">Diakite</span></h1>
-                    <h2>Étudiant en BTS SIO (SISR) à Efrei Paris</h2>
-                    <p>
-                        Passionné par le développement web, les systèmes réseaux et la cybersécurité. 
-                        Actuellement en formation pour devenir administrateur système et réseau.
-                    </p>
-                    <div style="display: flex; gap: 15px; flex-wrap: wrap;">
+                    <h2>Étudiant en BTS SIO (SISR) à EFREI Paris</h2>
+                    <p>Passionné par le développement, les systèmes réseaux et la cybersécurité.</p>
+                    
+                    <div style="display: flex; gap: 20px; margin-top: 25px; align-items: center;">
                         <a href="projets.html" class="btn-primary">Découvrir mes projets</a>
-                        <a href="Tableau_de_synthese.pdf" target="_blank" style="color: white; text-decoration: none; align-self: center; font-size: 0.9rem; border-bottom: 1px solid var(--accent); padding-bottom: 2px;">
-                            <i class="fas fa-file-pdf"></i> Voir CV / Synthèse
+                        
+                        <a href="documents/Tableau_de_syntheses.pdf" target="_blank" class="btn-synthese">
+                            <div class="btn-content">
+                                <i class="fas fa-file-signature"></i>
+                                <span>Synthèse SISR</span>
+                            </div>
+                            <div class="btn-glow"></div>
                         </a>
                     </div>
                 </div>
-                
                 <div class="photo-container">
                     <img src="images/photo-harouna.jpg" alt="Harouna Diakite">
                 </div>
             </div>
 
-            <div class="glass-card" style="justify-content: center;">
-                <h3 style="margin-bottom: 20px;"><i class="fas fa-map-marker-alt" style="color: #ff004f;"></i> Localisation</h3>
-                <p style="margin-bottom: 10px;"><i class="fas fa-thumbtack" style="color: #ff004f; width: 20px;"></i> Montmagny (95360)</p>
-                <p style="color: var(--text-dim); font-size: 0.9rem;"><i class="fas fa-car" style="color: #ff004f; width: 20px;"></i> Permis B (Véhiculé)</p>
-                <div style="margin-top: 15px; border: 1px dashed var(--accent); padding: 10px; border-radius: 10px; font-size: 0.85rem; color: var(--accent); text-align: center;">
-                    Mobile sur toute l'Île-de-France
-                </div>
+            <div class="glass-card center-content">
+                <h3><i class="fas fa-map-marker-alt"></i> Localisation</h3>
+                <p>Montmagny (95360)</p>
+                <div class="badge-accent">Mobile Île-de-France</div>
             </div>
 
-            <div class="glass-card" style="justify-content: center; align-items: center; text-align: center;">
-                <h3 style="margin-bottom: 15px; font-size: 1.1rem;">Me joindre</h3>
-                <div style="display: flex; gap: 20px; font-size: 1.5rem;">
-                    <a href="#" style="color: var(--text-dim); transition: 0.3s;"><i class="fab fa-linkedin"></i></a>
-                    <a href="mailto:votre@email.com" style="color: var(--text-dim); transition: 0.3s;"><i class="fas fa-envelope"></i></a>
-                    <a href="#" style="color: var(--text-dim); transition: 0.3s;"><i class="fab fa-github"></i></a>
+            <div class="glass-card center-content">
+                <h3>Me joindre</h3>
+                <div class="social-links">
+                    <a href="https://www.linkedin.com/in/harouna-diakite-b10a23265" target="_blank"><i class="fab fa-linkedin"></i></a>
+                    <a href="mailto:diakiteharouna693@gmail.com"><i class="fas fa-envelope"></i></a>
+                    <a href="https://github.com/harouna05102004" target="_blank"><i class="fab fa-github"></i></a>
                 </div>
             </div>
 
             <div class="glass-card" style="grid-column: span 2;">
-                <h3 style="margin-bottom: 15px; font-size: 1.1rem;">Expertises Techniques</h3>
-                <div style="display: flex; gap: 10px; flex-wrap: wrap;">
-                    <span style="background: rgba(255,255,255,0.05); padding: 8px 15px; border-radius: 10px; font-size: 0.85rem; border: 1px solid var(--card-border);">Windows Server</span>
-                    <span style="background: rgba(255,255,255,0.05); padding: 8px 15px; border-radius: 10px; font-size: 0.85rem; border: 1px solid var(--card-border);">Linux Debian</span>
-                    <span style="background: rgba(255,255,255,0.05); padding: 8px 15px; border-radius: 10px; font-size: 0.85rem; border: 1px solid var(--card-border);">Cisco Packet Tracer</span>
-                    <span style="background: rgba(255,255,255,0.05); padding: 8px 15px; border-radius: 10px; font-size: 0.85rem; border: 1px solid var(--card-border);">Cybersécurité</span>
-                    <span style="background: rgba(255,255,255,0.05); padding: 8px 15px; border-radius: 10px; font-size: 0.85rem; border: 1px solid var(--card-border);">Azure</span>
-                    <span style="background: rgba(255,255,255,0.05); padding: 8px 15px; border-radius: 10px; font-size: 0.85rem; border: 1px solid var(--card-border);">GLPI</span>
+                <h3>Expertises Techniques</h3>
+                <div class="tags">
+                    <span>Windows Server</span><span>Linux Debian</span><span>Cisco</span><span>Azure</span><span>GLPI</span><span>Méthode Agile</span>
                 </div>
             </div>
 
         </div>
     </main>
+
     <script src="script-animation.js"></script>
 </body>
 </html>
