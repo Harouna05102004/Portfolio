@@ -3,97 +3,323 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mes Réalisations - Harouna</title>
+    <meta name="description" content="Découvrez mes projets en infrastructure réseau, systèmes et cybersécurité - Portfolio Harouna Diakite">
+    <title>Mes Réalisations | Harouna Diakite</title>
     <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>💼</text></svg>">
 </head>
 <body>
     <canvas id="bg-canvas"></canvas>
+    
     <nav class="navbar">
         <div class="max-width nav-content">
-            <div class="logo"><a href="index.html">Harouna<span class="gradient-text">.</span></a></div>
+            <div class="logo">
+                <a href="index.html">Harouna<span class="gradient-text">.</span></a>
+            </div>
+            <button class="menu-toggle" aria-label="Menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
             <ul class="menu">
                 <li><a href="index.html">Accueil</a></li>
+                <li><a href="index.html#about">À propos</a></li>
                 <li><a href="competences.html">Compétences</a></li>
                 <li><a href="projets.html" class="active">Réalisations</a></li>
+                <li><a href="index.html#contact">Contact</a></li>
             </ul>
         </div>
     </nav>
 
-    <main class="max-width" style="padding-top: 140px;">
-        <h2 class="title">Mes <span class="gradient-text">Réalisations</span></h2>
+    <main class="max-width" style="padding-top: 140px; padding-bottom: 80px;">
+        <div style="text-align: center; margin-bottom: 60px;">
+            <h1 class="title" style="padding-top: 0; margin-bottom: 20px;">
+                Mes <span class="gradient-text">Réalisations</span>
+            </h1>
+            <p style="color: var(--text-dim); font-size: 1.2rem; max-width: 700px; margin: 0 auto;">
+                Découvrez mes projets en infrastructure, développement et cybersécurité réalisés dans le cadre de ma formation BTS SIO SISR
+            </p>
+        </div>
         
         <div class="grid-container">
-            
-            <div class="glass-card">
-                <div style="display: flex; align-items: center; margin-bottom: 15px;">
-                    <i class="fas fa-code fa-lg" style="color: #00d2ff; margin-right: 15px;"></i>
-                    <h3 style="color: #9d50bb;">KooFourchette</h3>
+            <!-- Projet 1: KooFourchette -->
+            <div class="glass-card project-detailed">
+                <div class="project-header">
+                    <div class="project-icon-large">
+                        <i class="fas fa-code"></i>
+                    </div>
+                    <div>
+                        <h3 style="color: #00d2ff; font-size: 1.8rem; margin-bottom: 5px;">KooFourchette</h3>
+                        <p style="color: var(--text-dim); font-size: 0.9rem;">Développement Web Full-Stack</p>
+                    </div>
                 </div>
-                <p style="color: var(--text-dim); font-size: 0.9rem; line-height: 1.5; margin-bottom: 20px;">
-                    Conception d'un site web dynamique en HTML, CSS et PHP avec connexion à une base de données MySQL. 
+                
+                <p style="color: var(--text-dim); line-height: 1.7; margin: 20px 0;">
+                    Conception et développement d'un site web dynamique de réservation de restaurants en HTML, CSS et PHP avec base de données MySQL. 
                     Hébergement sur machine virtuelle Ubuntu avec configuration réseau avancée (NAT → Pont, IP statique), 
                     routage, serveur FTP de sauvegarde et gestion de versions avec Git.
                 </p>
-                <div style="display: flex; gap: 8px; margin-top: auto;">
-                    <span style="font-size: 0.7rem; color: #fff; background: rgba(0,210,255,0.2); border: 1px solid #00d2ff; padding: 3px 8px; border-radius: 4px;">Web</span>
-                    <span style="font-size: 0.7rem; color: #fff; background: rgba(0,210,255,0.2); border: 1px solid #00d2ff; padding: 3px 8px; border-radius: 4px;">PHP/MySQL</span>
+                
+                <div class="project-features">
+                    <h4 style="color: var(--text-secondary); margin-bottom: 15px; font-size: 1.1rem;">
+                        <i class="fas fa-check-circle" style="color: var(--accent-green);"></i> Fonctionnalités
+                    </h4>
+                    <ul style="color: var(--text-dim); padding-left: 20px; line-height: 1.8;">
+                        <li>Interface utilisateur responsive (HTML5/CSS3)</li>
+                        <li>Système d'authentification et gestion de sessions PHP</li>
+                        <li>Base de données relationnelle MySQL</li>
+                        <li>Configuration serveur LAMP (Linux, Apache, MySQL, PHP)</li>
+                        <li>Versioning avec Git et GitHub</li>
+                    </ul>
+                </div>
+                
+                <div style="display: flex; gap: 8px; margin-top: 25px; flex-wrap: wrap;">
+                    <span class="tech-badge cyan"><i class="fab fa-html5"></i> HTML/CSS</span>
+                    <span class="tech-badge cyan"><i class="fab fa-php"></i> PHP</span>
+                    <span class="tech-badge cyan"><i class="fas fa-database"></i> MySQL</span>
+                    <span class="tech-badge cyan"><i class="fab fa-linux"></i> Ubuntu</span>
+                    <span class="tech-badge cyan"><i class="fab fa-git-alt"></i> Git</span>
                 </div>
             </div>
 
-            <div class="glass-card">
-                <div style="display: flex; align-items: center; margin-bottom: 15px;">
-                    <i class="fas fa-shield-alt fa-lg" style="color: #ff004f; margin-right: 15px;"></i>
-                    <h3 style="color: #ff004f;">Sécurité Web</h3>
+            <!-- Projet 2: Sécurité Web -->
+            <div class="glass-card project-detailed">
+                <div class="project-header">
+                    <div class="project-icon-large red">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <div>
+                        <h3 style="color: #ff004f; font-size: 1.8rem; margin-bottom: 5px;">Sécurité Web</h3>
+                        <p style="color: var(--text-dim); font-size: 0.9rem;">Cybersécurité & Tests d'intrusion</p>
+                    </div>
                 </div>
-                <p style="color: var(--text-dim); font-size: 0.9rem; line-height: 1.5; margin-bottom: 20px;">
-                    Développement d'une application PHP/MySQL déployée sur machine virtuelle. 
-                    Analyse et démonstration d'attaques (SQLi, XSS, CSRF, MITM) puis sécurisation par durcissement du code et de l'infrastructure.
+                
+                <p style="color: var(--text-dim); line-height: 1.7; margin: 20px 0;">
+                    Développement d'une application PHP/MySQL déployée sur machine virtuelle pour démontrer les vulnérabilités courantes. 
+                    Analyse et exploitation de failles de sécurité (SQL Injection, XSS, CSRF, MITM), puis implémentation de mesures de 
+                    sécurisation par durcissement du code et de l'infrastructure.
                 </p>
-                <div style="display: flex; gap: 8px; margin-top: auto;">
-                    <span style="font-size: 0.7rem; color: #fff; background: rgba(255,0,79,0.2); border: 1px solid #ff004f; padding: 3px 8px; border-radius: 4px;">Cybersécurité</span>
+                
+                <div class="project-features">
+                    <h4 style="color: var(--text-secondary); margin-bottom: 15px; font-size: 1.1rem;">
+                        <i class="fas fa-bug" style="color: var(--accent-red);"></i> Vulnérabilités analysées
+                    </h4>
+                    <ul style="color: var(--text-dim); padding-left: 20px; line-height: 1.8;">
+                        <li><strong>SQL Injection:</strong> Exploitation et correction avec requêtes préparées</li>
+                        <li><strong>XSS:</strong> Filtrage et échappement des données utilisateur</li>
+                        <li><strong>CSRF:</strong> Implémentation de tokens anti-CSRF</li>
+                        <li><strong>MITM:</strong> Configuration HTTPS et certificats SSL</li>
+                        <li>Durcissement système et mise en place de pare-feu</li>
+                    </ul>
+                </div>
+                
+                <div style="display: flex; gap: 8px; margin-top: 25px; flex-wrap: wrap;">
+                    <span class="tech-badge red"><i class="fas fa-shield-alt"></i> Pentest</span>
+                    <span class="tech-badge red"><i class="fas fa-lock"></i> Sécurité</span>
+                    <span class="tech-badge red"><i class="fab fa-php"></i> PHP/MySQL</span>
+                    <span class="tech-badge red"><i class="fas fa-terminal"></i> Kali Linux</span>
                 </div>
             </div>
 
-            <div class="glass-card">
-                <div style="display: flex; align-items: center; margin-bottom: 15px;">
-                    <i class="fab fa-windows fa-lg" style="color: #00a4ef; margin-right: 15px;"></i>
-                    <h3 style="color: #00a4ef;">Active Directory</h3>
+            <!-- Projet 3: Active Directory -->
+            <div class="glass-card project-detailed">
+                <div class="project-header">
+                    <div class="project-icon-large blue">
+                        <i class="fab fa-windows"></i>
+                    </div>
+                    <div>
+                        <h3 style="color: #00a4ef; font-size: 1.8rem; margin-bottom: 5px;">Active Directory</h3>
+                        <p style="color: var(--text-dim); font-size: 0.9rem;">Administration Système Windows</p>
+                    </div>
                 </div>
-                <p style="color: var(--text-dim); font-size: 0.9rem; line-height: 1.5; margin-bottom: 20px;">
-                    Mise en place d'une infrastructure sous Windows Server : création du domaine, gestion des utilisateurs/groupes, 
-                    configuration DNS et DHCP, déploiement de GPO et administration des services réseau en environnement virtualisé.
+                
+                <p style="color: var(--text-dim); line-height: 1.7; margin: 20px 0;">
+                    Mise en place complète d'une infrastructure Active Directory sous Windows Server 2019 : création du domaine efrei.local, 
+                    gestion centralisée des utilisateurs et groupes, configuration des services DNS et DHCP, déploiement de stratégies de 
+                    groupe (GPO) et administration des services réseau en environnement virtualisé.
                 </p>
-                <div style="display: flex; gap: 8px; margin-top: auto;">
-                    <span style="font-size: 0.7rem; color: #fff; background: rgba(0,164,239,0.2); border: 1px solid #00a4ef; padding: 3px 8px; border-radius: 4px;">Windows Server</span>
+                
+                <div class="project-features">
+                    <h4 style="color: var(--text-secondary); margin-bottom: 15px; font-size: 1.1rem;">
+                        <i class="fas fa-server" style="color: #00a4ef;"></i> Services configurés
+                    </h4>
+                    <ul style="color: var(--text-dim); padding-left: 20px; line-height: 1.8;">
+                        <li>Contrôleur de domaine AD DS (efrei.local)</li>
+                        <li>Services DNS et DHCP intégrés</li>
+                        <li>GPO : politiques de sécurité, redirection de dossiers</li>
+                        <li>Profils itinérants et scripts d'ouverture de session</li>
+                        <li>Gestion des OU (Unités d'Organisation)</li>
+                    </ul>
+                </div>
+                
+                <div style="display: flex; gap: 8px; margin-top: 25px; flex-wrap: wrap;">
+                    <span class="tech-badge blue"><i class="fab fa-windows"></i> Windows Server 2019</span>
+                    <span class="tech-badge blue"><i class="fas fa-network-wired"></i> AD DS</span>
+                    <span class="tech-badge blue"><i class="fas fa-shield-alt"></i> GPO</span>
+                    <span class="tech-badge blue"><i class="fas fa-dns"></i> DNS/DHCP</span>
                 </div>
             </div>
 
-            <div class="glass-card">
-                <div style="display: flex; align-items: center; margin-bottom: 15px;">
-                    <i class="fas fa-tools fa-lg" style="color: #f5ba1a; margin-right: 15px;"></i>
-                    <h3 style="color: #f5ba1a;">Infrastructure GLPI</h3>
+            <!-- Projet 4: Infrastructure GLPI -->
+            <div class="glass-card project-detailed">
+                <div class="project-header">
+                    <div class="project-icon-large yellow">
+                        <i class="fas fa-tools"></i>
+                    </div>
+                    <div>
+                        <h3 style="color: #f5ba1a; font-size: 1.8rem; margin-bottom: 5px;">Infrastructure GLPI</h3>
+                        <p style="color: var(--text-dim); font-size: 0.9rem;">Gestion de Parc & Helpdesk</p>
+                    </div>
                 </div>
-                <p style="color: var(--text-dim); font-size: 0.9rem; line-height: 1.5; margin-bottom: 20px;">
-                    Déploiement sur Debian d'une solution de gestion de parc et d'incidents : installation de la pile LAMP (Apache, MySQL, PHP), 
-                    inventaire automatisé et mise en place du système de ticketing.
+                
+                <p style="color: var(--text-dim); line-height: 1.7; margin: 20px 0;">
+                    Déploiement d'une solution complète de gestion de parc informatique et de ticketing sur Debian. 
+                    Installation et configuration de la pile LAMP (Linux, Apache, MySQL, PHP), mise en place de 
+                    l'inventaire automatisé avec GLPI Agent et implémentation du système de gestion d'incidents.
                 </p>
-                <div style="display: flex; gap: 8px; margin-top: auto;">
-                    <span style="font-size: 0.7rem; color: #fff; background: rgba(245,186,26,0.2); border: 1px solid #f5ba1a; padding: 3px 8px; border-radius: 4px;">Linux</span>
-                    <span style="font-size: 0.7rem; color: #fff; background: rgba(245,186,26,0.2); border: 1px solid #f5ba1a; padding: 3px 8px; border-radius: 4px;">GLPI</span>
+                
+                <div class="project-features">
+                    <h4 style="color: var(--text-secondary); margin-bottom: 15px; font-size: 1.1rem;">
+                        <i class="fas fa-cogs" style="color: #f5ba1a;"></i> Fonctionnalités GLPI
+                    </h4>
+                    <ul style="color: var(--text-dim); padding-left: 20px; line-height: 1.8;">
+                        <li>Installation LAMP sur Debian 11</li>
+                        <li>Configuration base de données MariaDB</li>
+                        <li>Déploiement GLPI Agent sur le parc</li>
+                        <li>Inventaire automatique du matériel et logiciels</li>
+                        <li>Système de ticketing et suivi des incidents</li>
+                    </ul>
+                </div>
+                
+                <div style="display: flex; gap: 8px; margin-top: 25px; flex-wrap: wrap;">
+                    <span class="tech-badge yellow"><i class="fab fa-linux"></i> Debian</span>
+                    <span class="tech-badge yellow"><i class="fas fa-tools"></i> GLPI</span>
+                    <span class="tech-badge yellow"><i class="fas fa-database"></i> MariaDB</span>
+                    <span class="tech-badge yellow"><i class="fas fa-server"></i> Apache</span>
                 </div>
             </div>
 
+            <!-- Projet 5: Infrastructure Réseau -->
+            <div class="glass-card project-detailed">
+                <div class="project-header">
+                    <div class="project-icon-large purple">
+                        <i class="fas fa-network-wired"></i>
+                    </div>
+                    <div>
+                        <h3 style="color: #9d50bb; font-size: 1.8rem; margin-bottom: 5px;">Infrastructure Réseau</h3>
+                        <p style="color: var(--text-dim); font-size: 0.9rem;">Cisco & Routage VLAN</p>
+                    </div>
+                </div>
+                
+                <p style="color: var(--text-dim); line-height: 1.7; margin: 20px 0;">
+                    Conception et déploiement d'une infrastructure réseau segmentée avec VLANs pour séparer les domaines SISR et SLAM. 
+                    Configuration de switchs et routeurs Cisco, mise en place du routage inter-VLAN (Router-on-a-Stick), 
+                    configuration des services DHCP et DNS, et sécurisation Wi-Fi avec WPA2/WPA3.
+                </p>
+                
+                <div class="project-features">
+                    <h4 style="color: var(--text-secondary); margin-bottom: 15px; font-size: 1.1rem;">
+                        <i class="fas fa-project-diagram" style="color: #9d50bb;"></i> Architecture réseau
+                    </h4>
+                    <ul style="color: var(--text-dim); padding-left: 20px; line-height: 1.8;">
+                        <li>Segmentation VLAN (VLAN 100 SISR, VLAN 200 SLAM)</li>
+                        <li>Routage inter-VLAN avec encapsulation 802.1Q</li>
+                        <li>Configuration trunking et ports access</li>
+                        <li>Services DHCP/DNS Cisco et Windows Server</li>
+                        <li>Sécurisation Wi-Fi (WPA2-PSK, filtrage MAC)</li>
+                    </ul>
+                </div>
+                
+                <div style="display: flex; gap: 8px; margin-top: 25px; flex-wrap: wrap;">
+                    <span class="tech-badge purple"><i class="fas fa-network-wired"></i> Cisco IOS</span>
+                    <span class="tech-badge purple"><i class="fas fa-project-diagram"></i> VLANs</span>
+                    <span class="tech-badge purple"><i class="fas fa-route"></i> Routage</span>
+                    <span class="tech-badge purple"><i class="fas fa-wifi"></i> Wi-Fi</span>
+                </div>
+            </div>
+
+            <!-- Projet 6: Sauvegarde & Restauration -->
+            <div class="glass-card project-detailed">
+                <div class="project-header">
+                    <div class="project-icon-large green">
+                        <i class="fas fa-database"></i>
+                    </div>
+                    <div>
+                        <h3 style="color: #10b981; font-size: 1.8rem; margin-bottom: 5px;">Sauvegarde & Restauration</h3>
+                        <p style="color: var(--text-dim); font-size: 0.9rem;">Continuité d'activité</p>
+                    </div>
+                </div>
+                
+                <p style="color: var(--text-dim); line-height: 1.7; margin: 20px 0;">
+                    Mise en place d'une stratégie complète de sauvegarde et de restauration des données d'entreprise. 
+                    Configuration de Windows Server Backup, planification de sauvegardes automatiques, 
+                    implémentation des Shadow Copies (clichés instantanés) et tests de restauration granulaire.
+                </p>
+                
+                <div class="project-features">
+                    <h4 style="color: var(--text-secondary); margin-bottom: 15px; font-size: 1.1rem;">
+                        <i class="fas fa-shield-alt" style="color: #10b981;"></i> Mesures de protection
+                    </h4>
+                    <ul style="color: var(--text-dim); padding-left: 20px; line-height: 1.8;">
+                        <li>Planification sauvegardes complètes et incrémentielles</li>
+                        <li>Configuration Shadow Copies pour autonomie utilisateur</li>
+                        <li>Tests de restauration suite à incident simulé</li>
+                        <li>Documentation des procédures de recovery</li>
+                    </ul>
+                </div>
+                
+                <div style="display: flex; gap: 8px; margin-top: 25px; flex-wrap: wrap;">
+                    <span class="tech-badge green"><i class="fab fa-windows"></i> Windows Backup</span>
+                    <span class="tech-badge green"><i class="fas fa-save"></i> Shadow Copy</span>
+                    <span class="tech-badge green"><i class="fas fa-shield-alt"></i> PRA</span>
+                </div>
+            </div>
         </div>
 
-        <div style="margin-top: 50px; text-align: center;">
-            <div style="display: inline-block; border: 1px dashed var(--card-border); padding: 15px 40px; border-radius: 15px; background: rgba(255,255,255,0.02);">
-                <p style="color: var(--text-dim); font-size: 0.9rem;">
-                    D'autres projets sont disponibles sur mon <a href="https://github.com/Harouna05102004" target="_blank" class="gradient-text" style="text-decoration: none;">GitHub</a>.
+        <!-- CTA Section -->
+        <div style="margin-top: 80px; text-align: center;">
+            <div style="background: linear-gradient(135deg, rgba(0, 212, 255, 0.1), rgba(157, 80, 187, 0.1)); 
+                        backdrop-filter: blur(20px); 
+                        border: 1px solid var(--glass-border); 
+                        padding: 50px 40px; 
+                        border-radius: 25px; 
+                        max-width: 700px; 
+                        margin: 0 auto;">
+                <h3 style="font-size: 2rem; margin-bottom: 15px;">Vous souhaitez en savoir plus ?</h3>
+                <p style="color: var(--text-dim); font-size: 1.1rem; margin-bottom: 30px; line-height: 1.7;">
+                    D'autres projets et détails techniques sont disponibles sur mon GitHub et dans ma synthèse de compétences.
                 </p>
+                <div style="display: flex; gap: 15px; justify-content: center; flex-wrap: wrap;">
+                    <a href="https://github.com/Harouna05102004" target="_blank" class="btn-primary">
+                        <i class="fab fa-github"></i>
+                        Voir mon GitHub
+                    </a>
+                    <a href="competences.html" class="btn-secondary">
+                        <i class="fas fa-code"></i>
+                        Mes Compétences
+                    </a>
+                </div>
             </div>
         </div>
     </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="max-width">
+            <div class="footer-content">
+                <div class="footer-left">
+                    <p>&copy; 2025 Harouna Diakite. Tous droits réservés.</p>
+                </div>
+                <div class="footer-right">
+                    <a href="#" class="scroll-top">
+                        <i class="fas fa-arrow-up"></i>
+                        Retour en haut
+                    </a>
+                </div>
+            </div>
+        </div>
+    </footer>
 
     <script src="script-animation.js"></script>
 </body>
