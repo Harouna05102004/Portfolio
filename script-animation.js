@@ -128,13 +128,14 @@ function updateActiveNavLink() {
     });
 }
 
-// ==================== MENU BURGER MOBILE (Fix iOS Safari) ==================== //
+// ==================== MENU BURGER (Fix Safari + Chrome mobile) ==================== //
 function initMobileMenu() {
     const menuToggle = document.querySelector('.menu-toggle');
     const menu = document.querySelector('.navbar .menu');
     if (!menuToggle || !menu) return;
 
     let isOpen = false;
+    let lastTouchEnd = 0; // Fix Chrome : évite le double déclenchement touch + click
 
     function openMenu() {
         isOpen = true;
@@ -150,34 +151,52 @@ function initMobileMenu() {
         document.body.style.overflow = '';
     }
 
-    function toggleMenu(e) {
+    // ---- BOUTON BURGER ----
+
+    // Touch (Safari + Chrome mobile)
+    menuToggle.addEventListener('touchend', (e) => {
         e.preventDefault();
         e.stopPropagation();
+        lastTouchEnd = Date.now(); // On note l'heure du touch
         isOpen ? closeMenu() : openMenu();
-    }
+    }, { passive: false });
 
-    // Clic normal + touch pour iOS
-    menuToggle.addEventListener('click', toggleMenu, { passive: false });
-    menuToggle.addEventListener('touchstart', toggleMenu, { passive: false });
+    // Click (desktop + Chrome mobile qui déclenche click après touch)
+    menuToggle.addEventListener('click', (e) => {
+        e.stopPropagation();
+        // Si un touch vient de se produire il y a moins de 300ms, on ignore le click
+        // pour éviter le double déclenchement sur Chrome mobile
+        if (Date.now() - lastTouchEnd < 300) return;
+        isOpen ? closeMenu() : openMenu();
+    });
 
-    // Fermer en cliquant sur un lien
+    // ---- LIENS DU MENU ----
     menu.querySelectorAll('a').forEach(link => {
-        link.addEventListener('click', closeMenu);
-        link.addEventListener('touchstart', closeMenu, { passive: true });
-    });
-
-    // Fermer en cliquant en dehors
-    document.addEventListener('click', (e) => {
-        if (isOpen && !menu.contains(e.target) && !menuToggle.contains(e.target)) {
+        link.addEventListener('touchend', (e) => {
+            e.stopPropagation();
+            lastTouchEnd = Date.now();
             closeMenu();
-        }
+        }, { passive: true });
+
+        link.addEventListener('click', () => {
+            if (Date.now() - lastTouchEnd < 300) return;
+            closeMenu();
+        });
     });
 
-    document.addEventListener('touchstart', (e) => {
+    // ---- FERMER EN DEHORS ----
+    document.addEventListener('touchend', (e) => {
         if (isOpen && !menu.contains(e.target) && !menuToggle.contains(e.target)) {
             closeMenu();
         }
     }, { passive: true });
+
+    document.addEventListener('click', (e) => {
+        if (Date.now() - lastTouchEnd < 300) return;
+        if (isOpen && !menu.contains(e.target) && !menuToggle.contains(e.target)) {
+            closeMenu();
+        }
+    });
 }
 
 // ==================== SMOOTH SCROLL ==================== //
