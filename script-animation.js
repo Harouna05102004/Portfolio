@@ -20,18 +20,17 @@ document.addEventListener('DOMContentLoaded', () => {
     initMobileMenu();
     initGradientAnimation();
     initLazyLoad();
+    initHoverEffects();
 });
 
 // ==================== CANVAS PARTICLES ==================== //
 function initCanvas() {
     canvas = document.getElementById('bg-canvas');
     if (!canvas) return;
-    
     ctx = canvas.getContext('2d');
     resizeCanvas();
     createParticles();
     animateCanvas();
-    
     window.addEventListener('resize', debounce(resizeCanvas, 250));
     window.addEventListener('mousemove', throttle(updateMousePosition, 50));
 }
@@ -63,15 +62,11 @@ function updateMousePosition(e) {
 
 function animateCanvas() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
-    
     particles.forEach((p, i) => {
         p.x += p.vx;
         p.y += p.vy;
-        
         if (p.x < 0 || p.x > canvas.width) p.vx *= -1;
         if (p.y < 0 || p.y > canvas.height) p.vy *= -1;
-        
-        // Interaction avec la souris
         const dx = mouseX - p.x;
         const dy = mouseY - p.y;
         const distance = Math.sqrt(dx * dx + dy * dy);
@@ -80,14 +75,10 @@ function animateCanvas() {
             p.x -= dx * force * 0.01;
             p.y -= dy * force * 0.01;
         }
-        
-        // Dessiner la particule
         ctx.beginPath();
         ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
         ctx.fillStyle = `rgba(0, 212, 255, ${p.opacity})`;
         ctx.fill();
-        
-        // Connexions entre particules proches
         particles.slice(i + 1).forEach(p2 => {
             const dx = p.x - p2.x;
             const dy = p.y - p2.y;
@@ -103,7 +94,6 @@ function animateCanvas() {
             }
         });
     });
-    
     animationFrame = requestAnimationFrame(animateCanvas);
 }
 
@@ -111,7 +101,6 @@ function animateCanvas() {
 function initNavbar() {
     const navbar = document.querySelector('.navbar');
     if (!navbar) return;
-    
     window.addEventListener('scroll', throttle(() => {
         if (window.pageYOffset > 50) {
             navbar.classList.add('scrolled');
@@ -125,14 +114,12 @@ function initNavbar() {
 function updateActiveNavLink() {
     const sections = document.querySelectorAll('section[id]');
     const navLinks = document.querySelectorAll('.navbar .menu li a');
-    
     let currentSection = '';
     sections.forEach(section => {
         if (window.pageYOffset >= section.offsetTop - 200) {
             currentSection = section.getAttribute('id');
         }
     });
-    
     navLinks.forEach(link => {
         link.classList.remove('active');
         if (link.getAttribute('href') === `#${currentSection}`) {
@@ -141,61 +128,56 @@ function updateActiveNavLink() {
     });
 }
 
-// ==================== MENU BURGER MOBILE ==================== //
+// ==================== MENU BURGER MOBILE (Fix iOS Safari) ==================== //
 function initMobileMenu() {
     const menuToggle = document.querySelector('.menu-toggle');
     const menu = document.querySelector('.navbar .menu');
     if (!menuToggle || !menu) return;
 
-    // Fix iOS Safari : utiliser touchend au lieu de click
+    let isOpen = false;
+
+    function openMenu() {
+        isOpen = true;
+        menuToggle.classList.add('active');
+        menu.classList.add('active');
+        document.body.style.overflow = 'hidden';
+    }
+
+    function closeMenu() {
+        isOpen = false;
+        menuToggle.classList.remove('active');
+        menu.classList.remove('active');
+        document.body.style.overflow = '';
+    }
+
     function toggleMenu(e) {
         e.preventDefault();
         e.stopPropagation();
-        menuToggle.classList.toggle('active');
-        menu.classList.toggle('active');
-        document.body.style.overflow = menu.classList.contains('active') ? 'hidden' : '';
+        isOpen ? closeMenu() : openMenu();
     }
 
-    menuToggle.addEventListener('click', toggleMenu);
-    menuToggle.addEventListener('touchend', toggleMenu);
+    // Clic normal + touch pour iOS
+    menuToggle.addEventListener('click', toggleMenu, { passive: false });
+    menuToggle.addEventListener('touchstart', toggleMenu, { passive: false });
 
-    // Fermer au clic sur un lien
+    // Fermer en cliquant sur un lien
     menu.querySelectorAll('a').forEach(link => {
-        function closeMenu(e) {
-            menuToggle.classList.remove('active');
-            menu.classList.remove('active');
-            document.body.style.overflow = '';
-        }
         link.addEventListener('click', closeMenu);
-        link.addEventListener('touchend', closeMenu);
+        link.addEventListener('touchstart', closeMenu, { passive: true });
     });
 
     // Fermer en cliquant en dehors
-    document.addEventListener('touchend', (e) => {
-        if (!menu.contains(e.target) && !menuToggle.contains(e.target) && menu.classList.contains('active')) {
-            menuToggle.classList.remove('active');
-            menu.classList.remove('active');
-            document.body.style.overflow = '';
+    document.addEventListener('click', (e) => {
+        if (isOpen && !menu.contains(e.target) && !menuToggle.contains(e.target)) {
+            closeMenu();
         }
     });
 
-    document.addEventListener('click', (e) => {
-        if (!menu.contains(e.target) && !menuToggle.contains(e.target) && menu.classList.contains('active')) {
-            menuToggle.classList.remove('active');
-            menu.classList.remove('active');
-            document.body.style.overflow = '';
+    document.addEventListener('touchstart', (e) => {
+        if (isOpen && !menu.contains(e.target) && !menuToggle.contains(e.target)) {
+            closeMenu();
         }
-    });
-}
-    
-    // Fermer au clic en dehors
-    document.addEventListener('click', (e) => {
-        if (!menu.contains(e.target) && !menuToggle.contains(e.target) && menu.classList.contains('active')) {
-            menuToggle.classList.remove('active');
-            menu.classList.remove('active');
-            document.body.style.overflow = '';
-        }
-    });
+    }, { passive: true });
 }
 
 // ==================== SMOOTH SCROLL ==================== //
@@ -207,10 +189,7 @@ function initSmoothScroll() {
             e.preventDefault();
             const target = document.querySelector(href);
             if (!target) return;
-            window.scrollTo({
-                top: target.offsetTop - 80,
-                behavior: 'smooth'
-            });
+            window.scrollTo({ top: target.offsetTop - 80, behavior: 'smooth' });
         });
     });
 }
@@ -225,13 +204,13 @@ function initScrollAnimations() {
             }
         });
     }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
-    
+
     const elements = document.querySelectorAll(`
         .glass-card, .comp-card, .project-card,
         .expertise-card, .stat-card, .realisation,
         .section-title, .about-text, .contact-method
     `);
-    
+
     elements.forEach((el, index) => {
         el.style.opacity = '0';
         el.style.transform = 'translateY(40px)';
@@ -274,7 +253,7 @@ function initLazyLoad() {
 }
 
 // ==================== HOVER EFFECTS ==================== //
-document.addEventListener('DOMContentLoaded', () => {
+function initHoverEffects() {
     document.querySelectorAll('.glass-card, .comp-card, .project-card').forEach(card => {
         card.addEventListener('mouseenter', function() {
             this.style.boxShadow = '0 20px 60px rgba(0, 212, 255, 0.3)';
@@ -293,13 +272,12 @@ document.addEventListener('DOMContentLoaded', () => {
             this.style.transform = 'scale(1) rotate(0deg)';
         });
     });
-});
+}
 
 // ==================== COMPTEURS ANIMÉS ==================== //
 function animateCounter(element, target, duration = 2000) {
     let start = 0;
     const increment = target / (duration / 16);
-    
     function update() {
         start += increment;
         if (start < target) {
@@ -315,8 +293,7 @@ function animateCounter(element, target, duration = 2000) {
 const statsObserver = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
         if (entry.isIntersecting) {
-            const text = entry.target.textContent;
-            const target = parseInt(text);
+            const target = parseInt(entry.target.textContent);
             if (!isNaN(target)) animateCounter(entry.target, target);
             statsObserver.unobserve(entry.target);
         }
