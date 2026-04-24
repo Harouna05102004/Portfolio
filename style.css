@@ -1501,3 +1501,24 @@ Et sur les boutons `.btn-primary` / `.btn-secondary` :
 ```
 -webkit-tap-highlight-color: transparent;  
 touch-action: manipulation;                
+
+/* Style pour le bouton Compétences Stage (Word) */
+.btn-doc {
+    background: rgba(157, 80, 187, 0.1);
+    border: 1px solid #9d50bb;
+}
+
+.btn-doc:hover {
+    background: linear-gradient(135deg, #9d50bb 0%, #00d2ff 100%);
+    box-shadow: 0 0 20px rgba(157, 80, 187, 0.5);
+    transform: translateY(-2px);
+}
+
+/* Espacement des boutons CTA */
+.cta-buttons {
+    display: flex;
+    gap: 12px;
+    margin-top: 25px;
+    align-items: center;
+    flex-wrap: wrap;
+}
