@@ -408,3 +408,39 @@ function initPageTransitions() {
 document.addEventListener('DOMContentLoaded', () => {
     initPageTransitions();
 });
+
+// ==================== SIDE NAV FLOTTANTE ==================== //
+function initSideNav() {
+    const sideNav = document.getElementById('side-nav');
+    if (!sideNav) return;
+
+    const items = sideNav.querySelectorAll('.side-nav-item');
+    const sections = ['accueil', 'about', 'projets-recents', 'contact'];
+
+    function updateSideNav() {
+        const navHeight = document.querySelector('.navbar')?.offsetHeight || 80;
+        const scrollPos = window.pageYOffset + navHeight + 50;
+        let current = sections[0];
+
+        sections.forEach(id => {
+            const el = document.getElementById(id);
+            if (el && scrollPos >= el.offsetTop) {
+                current = id;
+            }
+        });
+
+        items.forEach(item => {
+            item.classList.remove('active');
+            if (item.getAttribute('href') === `#${current}`) {
+                item.classList.add('active');
+            }
+        });
+    }
+
+    window.addEventListener('scroll', throttle(updateSideNav, 80));
+    updateSideNav();
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+    initSideNav();
+});
