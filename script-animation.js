@@ -101,31 +101,50 @@ function animateCanvas() {
 function initNavbar() {
     const navbar = document.querySelector('.navbar');
     if (!navbar) return;
+
     window.addEventListener('scroll', throttle(() => {
-        if (window.pageYOffset > 50) {
-            navbar.classList.add('scrolled');
-        } else {
-            navbar.classList.remove('scrolled');
-        }
+        navbar.classList.toggle('scrolled', window.pageYOffset > 50);
         updateActiveNavLink();
-    }, 100));
+    }, 80));
+
+    // Init au chargement
+    updateActiveNavLink();
 }
 
 function updateActiveNavLink() {
     const sections = document.querySelectorAll('section[id]');
     const navLinks = document.querySelectorAll('.navbar .menu li a');
-    let currentSection = '';
-    sections.forEach(section => {
-        if (window.pageYOffset >= section.offsetTop - 200) {
-            currentSection = section.getAttribute('id');
-        }
-    });
-    navLinks.forEach(link => {
-        link.classList.remove('active');
-        if (link.getAttribute('href') === `#${currentSection}`) {
-            link.classList.add('active');
-        }
-    });
+
+    if (sections.length > 0) {
+        // Page index.html : détection par scroll
+        const navHeight = document.querySelector('.navbar')?.offsetHeight || 80;
+        const scrollPos = window.pageYOffset + navHeight + 10;
+
+        let currentSection = sections[0].getAttribute('id');
+        sections.forEach(section => {
+            if (scrollPos >= section.offsetTop) {
+                currentSection = section.getAttribute('id');
+            }
+        });
+
+        navLinks.forEach(link => {
+            link.classList.remove('active');
+            const href = link.getAttribute('href') || '';
+            if (href === `#${currentSection}` || href === `index.html#${currentSection}`) {
+                link.classList.add('active');
+            }
+        });
+    } else {
+        // Autres pages : activer selon nom de fichier courant
+        const currentPage = window.location.pathname.split('/').pop() || 'index.html';
+        navLinks.forEach(link => {
+            link.classList.remove('active');
+            const href = (link.getAttribute('href') || '').split('#')[0];
+            if (href === currentPage) {
+                link.classList.add('active');
+            }
+        });
+    }
 }
 
 // ==================== MENU BURGER (Fix Safari + Chrome mobile) ==================== //

@@ -90,10 +90,11 @@ canvas#bg-canvas {
     background: rgba(2, 6, 23, 0.95);
     backdrop-filter: blur(20px);
     -webkit-backdrop-filter: blur(20px);
-    z-index: 1000;
+    z-index: 9999;
     padding: 20px 0;
     border-bottom: 1px solid var(--glass-border);
     transition: var(--transition);
+    isolation: isolate;
 }
 
 .navbar.scrolled {
@@ -1684,4 +1685,5 @@ body {
 .comp-card ul li a:hover::after {
     opacity: 1;
     transform: translateX(0);
+}
 }
