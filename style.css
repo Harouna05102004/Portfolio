@@ -1486,39 +1486,218 @@ code {
 .mb-1 { margin-bottom: 10px; }
 .mb-2 { margin-bottom: 20px; }
 .mb-3 { margin-bottom: 30px; }
-```
 
-Les 2 seules choses qui ont changé par rapport à ton ancien fichier sont dans la section **Menu burger** :
-```
--webkit-tap-highlight-color: transparent;  
-touch-action: manipulation;                
-user-select: none;                        
--webkit-user-select: none;                
-pointer-events: none; sur les <span>       
-```
-
-Et sur les boutons `.btn-primary` / `.btn-secondary` :
-```
--webkit-tap-highlight-color: transparent;  
-touch-action: manipulation;                
-
-/* Style pour le bouton Compétences Stage (Word) */
+/* ==================== BOUTON DOC ==================== */
 .btn-doc {
     background: rgba(157, 80, 187, 0.1);
     border: 1px solid #9d50bb;
 }
-
 .btn-doc:hover {
     background: linear-gradient(135deg, #9d50bb 0%, #00d2ff 100%);
     box-shadow: 0 0 20px rgba(157, 80, 187, 0.5);
     transform: translateY(-2px);
 }
 
-/* Espacement des boutons CTA */
-.cta-buttons {
-    display: flex;
-    gap: 12px;
-    margin-top: 25px;
+/* ==================== TRANSITION DE PAGE ==================== */
+body {
+    animation: pageFadeIn 0.5s ease forwards;
+}
+
+@keyframes pageFadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(18px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.page-transition-out {
+    animation: pageFadeOut 0.35s ease forwards;
+}
+
+@keyframes pageFadeOut {
+    from {
+        opacity: 1;
+        transform: translateY(0);
+    }
+    to {
+        opacity: 0;
+        transform: translateY(-15px);
+    }
+}
+
+/* ==================== PROFIL CARD AMÉLIORÉE ==================== */
+.profile-card {
+    background: linear-gradient(
+        135deg,
+        rgba(0, 212, 255, 0.07) 0%,
+        rgba(15, 23, 42, 0.6) 50%,
+        rgba(157, 80, 187, 0.07) 100%
+    ) !important;
+    border: 1px solid rgba(0, 212, 255, 0.2) !important;
+}
+
+.profile-card::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--accent-purple), transparent);
+}
+
+.hero-text h1 {
+    letter-spacing: -1px;
+}
+
+.status-badge {
+    animation: badgePulse 3s ease infinite;
+}
+
+@keyframes badgePulse {
+    0%, 100% { box-shadow: 0 0 0 0 rgba(0, 212, 255, 0); }
+    50%       { box-shadow: 0 0 12px 2px rgba(0, 212, 255, 0.15); }
+}
+
+/* ==================== PETITES CARTES AMÉLIORÉES ==================== */
+.info-card {
+    position: relative;
+    overflow: hidden;
+}
+
+.info-card::after {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, var(--accent-cyan), var(--accent-purple));
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.4s ease;
+}
+
+.info-card:hover::after {
+    transform: scaleX(1);
+}
+
+.card-icon {
+    transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.info-card:hover .card-icon {
+    transform: scale(1.15) rotate(-5deg);
+}
+
+.badge-accent {
+    transition: var(--transition);
+}
+
+.badge-accent:hover {
+    background: rgba(157, 80, 187, 0.25);
+    transform: translateY(-2px);
+}
+
+/* ==================== CARTE CONTACT AMÉLIORÉE ==================== */
+.contact-card {
+    background: linear-gradient(
+        135deg,
+        rgba(0, 212, 255, 0.05),
+        rgba(157, 80, 187, 0.05)
+    ) !important;
+}
+
+.social-links a {
+    position: relative;
+    overflow: hidden;
+}
+
+.social-links a::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, var(--accent-cyan), var(--accent-purple));
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    z-index: 0;
+}
+
+.social-links a:hover::before { opacity: 1; }
+.social-links a i,
+.social-links a span {
+    position: relative;
+    z-index: 1;
+}
+
+/* ==================== SKILLS CARD AMÉLIORÉE ==================== */
+.skills-card {
+    background: linear-gradient(
+        135deg,
+        rgba(157, 80, 187, 0.05),
+        rgba(0, 212, 255, 0.05)
+    ) !important;
+}
+
+.tags span {
+    cursor: default;
+    position: relative;
+    overflow: hidden;
+}
+
+.tags span::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: var(--accent-cyan);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.3s ease;
+    z-index: -1;
+}
+
+.tags span:hover::before { transform: scaleX(1); }
+
+/* ==================== PHOTO WRAPPER AMÉLIORÉ ==================== */
+.photo-wrapper {
+    position: relative;
+}
+
+.photo-wrapper::after {
+    content: '';
+    position: absolute;
+    inset: -3px;
+    border-radius: 22px;
+    background: linear-gradient(45deg, var(--accent-cyan), transparent, var(--accent-purple));
+    z-index: -1;
+    opacity: 0;
+    transition: opacity 0.4s ease;
+}
+
+.photo-wrapper:hover::after {
+    opacity: 1;
+}
+
+/* ==================== COMP-CARD LIENS ANIMÉS ==================== */
+.comp-card ul li a {
+    display: inline-flex;
     align-items: center;
-    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.comp-card ul li a::after {
+    content: '→';
+    opacity: 0;
+    transform: translateX(-8px);
+    transition: var(--transition);
+    color: var(--accent-cyan);
+    font-size: 0.9rem;
+}
+
+.comp-card ul li a:hover::after {
+    opacity: 1;
+    transform: translateX(0);
+}
 }

@@ -354,3 +354,30 @@ function throttle(func, limit) {
 window.addEventListener('beforeunload', () => {
     if (animationFrame) cancelAnimationFrame(animationFrame);
 });
+// ==================== TRANSITIONS DE PAGE FLUIDES ==================== //
+function initPageTransitions() {
+    document.querySelectorAll('a').forEach(link => {
+        const href = link.getAttribute('href');
+        if (
+            !href ||
+            href.startsWith('#') ||
+            href.startsWith('mailto') ||
+            href.startsWith('http') ||
+            link.hasAttribute('download') ||
+            link.target === '_blank'
+        ) return;
+
+        link.addEventListener('click', function(e) {
+            e.preventDefault();
+            const target = this.getAttribute('href');
+            document.body.classList.add('page-transition-out');
+            setTimeout(() => {
+                window.location.href = target;
+            }, 320);
+        });
+    });
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+    initPageTransitions();
+});
