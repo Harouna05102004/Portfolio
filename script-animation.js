@@ -354,8 +354,16 @@ function throttle(func, limit) {
 window.addEventListener('beforeunload', () => {
     if (animationFrame) cancelAnimationFrame(animationFrame);
 });
+
 // ==================== TRANSITIONS DE PAGE FLUIDES ==================== //
 function initPageTransitions() {
+    // Corriger la page noire quand on revient en arrière
+    window.addEventListener('pageshow', function() {
+        document.body.style.opacity = '1';
+        document.body.style.transform = 'translateY(0)';
+        document.body.classList.remove('page-transition-out');
+    });
+
     document.querySelectorAll('a').forEach(link => {
         const href = link.getAttribute('href');
         if (
@@ -373,7 +381,7 @@ function initPageTransitions() {
             document.body.classList.add('page-transition-out');
             setTimeout(() => {
                 window.location.href = target;
-            }, 320);
+            }, 280);
         });
     });
 }
