@@ -308,6 +308,67 @@
             .pdf-section { padding: 0 16px 60px; }
             .legend { padding: 0 16px; }
         }
+        /* ===== BANDEAU STAGE ENTREPRISE ===== */
+        .stage-banner {
+            display: flex;
+            align-items: center;
+            gap: 30px;
+            background: linear-gradient(135deg, rgba(0,212,255,0.06), rgba(157,80,187,0.06));
+            border: 1px solid rgba(0,212,255,0.2);
+            border-radius: 20px;
+            padding: 30px;
+            flex-wrap: wrap;
+        }
+
+        .stage-logo {
+            flex-shrink: 0;
+            width: 130px;
+            height: 130px;
+            background: white;
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 15px;
+        }
+
+        .stage-logo img {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+        }
+
+        .stage-logo-fallback {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            color: #0078d4;
+        }
+
+        .stage-info { flex: 1; min-width: 250px; }
+        .stage-info h2 {
+            font-size: 1.5rem;
+            margin: 0 0 12px;
+            color: white;
+        }
+        .stage-info p {
+            margin: 6px 0;
+            color: #cbd5e1;
+            font-size: 0.95rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .stage-info p i { color: var(--accent-cyan); width: 16px; }
+
+        @media (max-width: 600px) {
+            .stage-banner { flex-direction: column; text-align: center; }
+            .stage-info p { justify-content: center; }
+        }
+
     </style>
 </head>
 <body>
@@ -317,12 +378,12 @@
         <div class="max-width nav-content">
             <div class="logo"><a href="index.html">Harouna<span class="gradient-text">.</span></a></div>
             <button class="menu-toggle" aria-label="Menu"><span></span><span></span><span></span></button>
-            <ul class="menu">
+                        <ul class="menu">
                 <li><a href="index.html">Accueil</a></li>
                 <li><a href="index.html#about">À propos</a></li>
                 <li><a href="competences.html">Compétences</a></li>
                 <li><a href="projets.html">Réalisations</a></li>
-                <li><a href="bts-sio.html" class="active">BTS SIO</a></li>
+                <li><a href="bts-sio.html" class="active">BTS SIO / Entreprise</a></li>
                 <li><a href="index.html#contact">Contact</a></li>
             </ul>
         </div>
@@ -341,6 +402,9 @@
             </button>
             <button class="year-tab" onclick="switchTab('an2', this)">
                 <i class="fas fa-rocket"></i> 2ème Année
+            </button>
+            <button class="year-tab" onclick="switchTab('entreprise', this)">
+                <i class="fas fa-briefcase"></i> Entreprise
             </button>
         </div>
     </div>
@@ -492,6 +556,134 @@
             </div>
 
         </div>
+    </div>
+
+    <!-- ===== ENTREPRISE (STAGE) ===== -->
+    <div class="tab-content" id="tab-entreprise">
+
+        <!-- Bandeau stage avec logo DSDEN -->
+        <div style="max-width:1200px;margin:0 auto 40px;padding:0 30px;">
+            <div class="stage-banner">
+                <div class="stage-logo">
+                    <img src="images/logo-dsden.png" alt="DSDEN 95" onerror="this.style.display='none'; this.insertAdjacentHTML('afterend', '<div class=&quot;stage-logo-fallback&quot;><i class=&quot;fas fa-building&quot;></i></div>')">
+                </div>
+                <div class="stage-info">
+                    <h2>Stage — EMIP 95 · DSDEN du Val-d'Oise</h2>
+                    <p><i class="fas fa-map-marker-alt"></i> Cergy · Académie de Versailles (DRASI)</p>
+                    <p><i class="fas fa-calendar-alt"></i> Mai — Juin 2026 · Support & Infrastructure IT</p>
+                    <p style="color:#94a3b8;margin-top:10px;font-size:0.9rem;">Service Opérations de Proximité — Assistance informatique, gestion de parc, réseau, virtualisation et supervision pour les établissements du Val-d'Oise.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="legend">
+            <span><span class="status-pill status-done">✓ Acquis</span> Compétence mise en pratique en entreprise</span>
+        </div>
+
+        <div class="comp-grid">
+
+            <div class="comp-ref-card">
+                <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:8px;">
+                    <span class="code">C7</span>
+                    <span class="status-pill status-done">✓ Acquis</span>
+                </div>
+                <div class="title-comp">Collecte, suivi et orientation des demandes</div>
+                <div class="desc">Traitement de tickets via EasyVista et CARINA, assistance aux utilisateurs, résolution d'incidents N1/N2 et suivi des demandes.</div>
+                <div class="detail-link"><span>Support & Ticketing</span><i class="fas fa-headset"></i></div>
+            </div>
+
+            <div class="comp-ref-card">
+                <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:8px;">
+                    <span class="code">C1</span>
+                    <span class="status-pill status-done">✓ Acquis</span>
+                </div>
+                <div class="title-comp">Gestion du parc et des ressources</div>
+                <div class="desc">Réception d'un lot de 200 PC Lenovo ThinkPad, inventaire via OZV, déploiement de 21 écrans, attribution de postes et suivi du matériel.</div>
+                <div class="detail-link"><span>Gestion de parc</span><i class="fas fa-boxes"></i></div>
+            </div>
+
+            <div class="comp-ref-card">
+                <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:8px;">
+                    <span class="code">C11</span>
+                    <span class="status-pill status-done">✓ Acquis</span>
+                </div>
+                <div class="title-comp">Masterisation et déploiement</div>
+                <div class="desc">Masterisation de postes via PXE, création de comptes Active Directory, préparation de postes pour nouveaux arrivants et installation de logiciels.</div>
+                <div class="detail-link"><span>Déploiement</span><i class="fas fa-clone"></i></div>
+            </div>
+
+            <div class="comp-ref-card" style="border-left-color:#0078d4;">
+                <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:8px;">
+                    <span class="code">C17</span>
+                    <span class="status-pill status-done">✓ Acquis</span>
+                </div>
+                <div class="title-comp">Réinstallation complète d'une baie réseau</div>
+                <div class="desc">Dépose et réinstallation d'une baie (switch HP PoE, routeur, brassage), mise en place d'un code couleur et tests de connectivité RJ45 / Wi-Fi.</div>
+                <div class="detail-link"><span>Infrastructure réseau</span><i class="fas fa-network-wired"></i></div>
+            </div>
+
+            <div class="comp-ref-card" style="border-left-color:var(--accent-purple);">
+                <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:8px;">
+                    <span class="code">C12</span>
+                    <span class="status-pill status-done">✓ Acquis</span>
+                </div>
+                <div class="title-comp">Supervision avec CheckMK</div>
+                <div class="desc">Installation de CheckMK sur VM, configuration d'un agent sur hôte distant, analyse des remontées (CPU, RAM, services, disponibilité NAS).</div>
+                <div class="detail-link"><span>Supervision</span><i class="fas fa-chart-line"></i></div>
+            </div>
+
+            <div class="comp-ref-card" style="border-left-color:#10b981;">
+                <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:8px;">
+                    <span class="code">C++</span>
+                    <span class="status-pill status-done">✓ Acquis</span>
+                </div>
+                <div class="title-comp">Virtualisation avec Proxmox</div>
+                <div class="desc">Installation de Proxmox VE (hyperviseur type 1) en environnement de test, comparaison des solutions et prise en main de la virtualisation.</div>
+                <div class="detail-link"><span>Virtualisation</span><i class="fas fa-server"></i></div>
+            </div>
+
+            <div class="comp-ref-card" style="border-left-color:var(--accent-orange);">
+                <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:8px;">
+                    <span class="code">C14</span>
+                    <span class="status-pill status-done">✓ Acquis</span>
+                </div>
+                <div class="title-comp">Maintenance matérielle et diagnostic</div>
+                <div class="desc">Démontage/remontage de PC, diagnostic matériel, récupération de composants (RAM, SSD), vérification de câbles et adaptateurs.</div>
+                <div class="detail-link"><span>Hardware</span><i class="fas fa-tools"></i></div>
+            </div>
+
+            <div class="comp-ref-card" style="border-left-color:#ef4444;">
+                <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:8px;">
+                    <span class="code">C8</span>
+                    <span class="status-pill status-done">✓ Acquis</span>
+                </div>
+                <div class="title-comp">Interventions sur site</div>
+                <div class="desc">Installation de PC enseignants, migration POP → IMAP en lycée, dépannage caméra de salle de réunion et tests Wi-Fi sur le terrain.</div>
+                <div class="detail-link"><span>Terrain</span><i class="fas fa-truck"></i></div>
+            </div>
+
+        </div>
+
+        <!-- Rapport de stage -->
+        <div style="max-width:1200px;margin:40px auto 0;padding:0 30px;">
+            <div class="pdf-card" style="border-color:rgba(157,80,187,0.3);">
+                <div class="pdf-card-left">
+                    <div class="pdf-icon" style="background:linear-gradient(135deg,var(--accent-purple),#c77dff);">
+                        <i class="fas fa-file-alt" style="color:white;"></i>
+                    </div>
+                    <div class="pdf-info">
+                        <h3>Rapport de stage complet</h3>
+                        <p>EMIP 95 · DSDEN du Val-d'Oise — Missions détaillées et réalisations<br>
+                        <span style="color:#64748b;font-size:0.8rem;">rapport-de-stage.pdf</span></p>
+                    </div>
+                </div>
+                <a href="rapport-de-stage.pdf" download class="btn-download">
+                    <i class="fas fa-download"></i>
+                    Télécharger le rapport
+                </a>
+            </div>
+        </div>
+
     </div>
 
     <!-- ===== SECTION PDF ===== -->
