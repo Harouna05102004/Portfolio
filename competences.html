@@ -2,21 +2,19 @@
 <html lang="fr">
 <head>
     <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-93C1CT31KL"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-93C1CT31KL');
-</script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-93C1CT31KL"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-93C1CT31KL');
+    </script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Compétences - Harouna Diakite</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
-        /* Variables locales manquantes dans cette page */
         :root {
             --accent-cyan: #00d4ff;
             --accent-purple: #9d50bb;
@@ -26,17 +24,77 @@
         }
         body { background-color: var(--bg-dark); }
 
-        /* Icône dans le titre de chaque carte */
-        .comp-card-icon {
-            width: 50px;
-            height: 50px;
+        /* ===== TABS ===== */
+        .year-tabs {
+            display: flex;
+            gap: 0;
+            background: rgba(255,255,255,0.04);
+            border: 1px solid rgba(255,255,255,0.08);
+            border-radius: 16px;
+            padding: 6px;
+            width: fit-content;
+            margin: 0 auto 50px;
+        }
+
+        .year-tab {
+            padding: 12px 32px;
             border-radius: 12px;
+            border: none;
+            background: transparent;
+            color: var(--text-dim, #94a3b8);
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
             display: flex;
             align-items: center;
-            justify-content: center;
-            font-size: 1.4rem;
-            margin-bottom: 18px;
+            gap: 10px;
+            font-family: inherit;
+        }
+
+        .year-tab:hover { color: white; }
+
+        .year-tab.active {
             background: linear-gradient(135deg, var(--accent-cyan), var(--accent-purple));
+            color: white;
+            box-shadow: 0 4px 20px rgba(0, 212, 255, 0.3);
+        }
+
+        .year-tab .tab-badge {
+            background: rgba(255,255,255,0.2);
+            font-size: 0.7rem;
+            padding: 2px 8px;
+            border-radius: 10px;
+        }
+
+        .year-tab.active .tab-badge {
+            background: rgba(255,255,255,0.25);
+        }
+
+        /* ===== CONTENU DES TABS ===== */
+        .tab-content { display: none; }
+        .tab-content.active { display: block; }
+
+        /* ===== GRILLE COMPETENCES ===== */
+        .competences-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
+            gap: 25px;
+        }
+
+        .comp-card {
+            background: var(--card-bg);
+            border-radius: 20px;
+            padding: 35px;
+            border-left: 5px solid var(--accent-cyan);
+            transition: 0.3s;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .comp-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 30px rgba(0, 212, 255, 0.1);
         }
 
         .comp-card-header {
@@ -46,20 +104,148 @@
             margin-bottom: 20px;
         }
 
-        .comp-card-header h2 {
-            margin-bottom: 0 !important;
+        .comp-card-icon {
+            width: 50px;
+            height: 50px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.4rem;
+            background: linear-gradient(135deg, var(--accent-cyan), var(--accent-purple));
+            flex-shrink: 0;
         }
 
-        /* Compteur de compétences */
+        .comp-card h2 { font-size: 1.5rem; margin: 0; }
+
         .comp-count {
             margin-left: auto;
             background: rgba(0, 212, 255, 0.1);
             border: 1px solid var(--accent-cyan);
             color: var(--accent-cyan);
-            font-size: 0.75rem;
+            font-size: 0.72rem;
             padding: 3px 10px;
             border-radius: 20px;
             font-weight: 600;
+            white-space: nowrap;
+        }
+
+        .comp-card ul { list-style: none; padding: 0; flex-grow: 1; margin: 0; }
+        .comp-card ul li {
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+        }
+        .comp-card ul li::before {
+            content: '>';
+            color: var(--accent-cyan);
+            margin-right: 12px;
+            font-weight: bold;
+        }
+        .comp-card ul li a {
+            color: white;
+            text-decoration: none;
+            transition: 0.2s;
+        }
+        .comp-card ul li a:hover { color: var(--accent-cyan); padding-left: 4px; }
+
+        .badge-container { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 20px; }
+        .badge {
+            border: 1px solid var(--accent-cyan);
+            color: var(--accent-cyan);
+            padding: 4px 12px;
+            border-radius: 15px;
+            font-size: 0.78rem;
+        }
+
+        /* ===== SECTION 2EME ANNEE ===== */
+        .coming-soon-banner {
+            text-align: center;
+            padding: 20px;
+            background: linear-gradient(135deg, rgba(0,212,255,0.08), rgba(157,80,187,0.08));
+            border: 1px dashed rgba(0,212,255,0.3);
+            border-radius: 16px;
+            margin-bottom: 40px;
+        }
+
+        .coming-soon-banner p {
+            color: var(--accent-cyan);
+            margin: 0;
+            font-size: 0.95rem;
+        }
+
+        .comp-card.upcoming {
+            opacity: 0.6;
+            border-left-color: rgba(0,212,255,0.3);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .comp-card.upcoming::after {
+            content: 'À venir';
+            position: absolute;
+            top: 16px;
+            right: 16px;
+            background: rgba(0,212,255,0.15);
+            border: 1px solid rgba(0,212,255,0.3);
+            color: var(--accent-cyan);
+            font-size: 0.72rem;
+            padding: 3px 10px;
+            border-radius: 10px;
+            font-weight: 600;
+        }
+
+        .comp-card.upcoming:hover { transform: none; }
+
+        /* ===== MODULES 2EME ANNEE ===== */
+        .module-list { list-style: none; padding: 0; }
+        .module-list li {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 10px 0;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+            color: #94a3b8;
+            font-size: 0.95rem;
+        }
+        .module-list li:last-child { border-bottom: none; }
+        .module-list li i { color: rgba(0,212,255,0.5); width: 18px; }
+
+        /* Navbar inline */
+        .max-width { max-width: 1300px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; padding: 0 20px; }
+        .logo a { font-size: 1.8rem; font-weight: 700; color: #fff; text-decoration: none; }
+        .gradient-text { background: linear-gradient(90deg, #00d4ff, #9d50bb); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .menu { list-style: none; display: flex; gap: 30px; }
+        .menu li a { color: #fff; text-decoration: none; font-weight: 500; transition: 0.3s; }
+        .menu li a:hover, .menu li a.active { color: var(--accent-cyan); }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 120px 20px 60px;
+        }
+
+        .header-title { text-align: center; margin-bottom: 50px; }
+        .header-title h1 { font-size: 3rem; margin: 0 0 10px; }
+        .header-title p { color: #94a3b8; margin-top: 10px; }
+
+        .status-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            border: 1px solid rgba(0,212,255,0.3);
+            color: var(--accent-cyan);
+            padding: 6px 16px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            margin-bottom: 18px;
+        }
+        .dot { width: 8px; height: 8px; border-radius: 50%; background: var(--accent-cyan); animation: pulse 2s infinite; }
+        @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.4} }
+
+        @media (max-width: 600px) {
+            .year-tab { padding: 10px 18px; font-size: 0.88rem; }
+            .competences-grid { grid-template-columns: 1fr; }
         }
     </style>
 </head>
@@ -68,123 +254,244 @@
     <nav class="navbar">
         <div class="max-width nav-content">
             <div class="logo"><a href="index.html">Harouna<span class="gradient-text">.</span></a></div>
-            <button class="menu-toggle" aria-label="Menu">
-                <span></span><span></span><span></span>
-            </button>
-            <ul class="menu">
+            <button class="menu-toggle" aria-label="Menu"><span></span><span></span><span></span></button>
+                        <ul class="menu">
                 <li><a href="index.html">Accueil</a></li>
                 <li><a href="index.html#about">À propos</a></li>
                 <li><a href="competences.html" class="active">Compétences</a></li>
                 <li><a href="projets.html">Réalisations</a></li>
+                <li><a href="bts-sio.html">BTS SIO</a></li>
                 <li><a href="index.html#contact">Contact</a></li>
             </ul>
         </div>
     </nav>
 
     <main class="container">
+
         <div class="header-title">
-            <div class="status-badge" style="margin-bottom: 20px;">
-                <span class="dot"></span> BTS SIO SISR · EFREI Paris
-            </div>
+            <div class="status-badge"><span class="dot"></span> BTS SIO SISR · EFREI Paris</div>
             <h1>Mes <span class="gradient-text">Compétences</span></h1>
             <p>Expertise technique acquise en formation et en stage — DIAKITE Harouna</p>
         </div>
 
-        <div class="competences-grid">
-
-            <div class="comp-card">
-                <div class="comp-card-header">
-                    <div class="comp-card-icon"><i class="fas fa-headset"></i></div>
-                    <h2>Support & Services</h2>
-                    <span class="comp-count">3 réalisations</span>
-                </div>
-                <ul>
-                    <li><a href="glpi-azure.html">Déployer GLPI sur machine virtuelle</a></li>
-                    <li><a href="glpi-patrimoine.html">Recenser et identifier les ressources (GLPI)</a></li>
-                    <li><a href="projet-trello.html">Travailler en méthode Agile (Trello)</a></li>
-                </ul>
-                <div class="badge-container">
-                    <span class="badge">GLPI</span>
-                    <span class="badge">Azure</span>
-                    <span class="badge">Trello</span>
-                </div>
-            </div>
-
-            <div class="comp-card">
-                <div class="comp-card-header">
-                    <div class="comp-card-icon"><i class="fas fa-network-wired"></i></div>
-                    <h2>Infrastructure Réseau</h2>
-                    <span class="comp-count">3 réalisations</span>
-                </div>
-                <p style="color: #94a3b8; font-size: 0.9rem; margin-bottom: 15px;">Conception et services d'infrastructure (VLAN, Routage, DNS, DHCP, Wi-Fi).</p>
-                <ul>
-                    <li><a href="reseau-vlan.html">VLANs, Trunking & Routage inter-VLAN</a></li>
-                    <li><a href="reseau-services.html">Services DHCP & DNS (Cisco & Windows)</a></li>
-                    <li><a href="reseau-wifi.html">Configuration de points d'accès Wi-Fi</a></li>
-                </ul>
-                <div class="badge-container">
-                    <span class="badge">Cisco CLI</span>
-                    <span class="badge">IPv4/IPv6</span>
-                    <span class="badge">Packet Tracer</span>
-                </div>
-            </div>
-
-            <div class="comp-card" style="border-left-color: #0078d4;">
-                <div class="comp-card-header">
-                    <div class="comp-card-icon" style="background: linear-gradient(135deg, #0078d4, #00d4ff);"><i class="fab fa-windows"></i></div>
-                    <h2>Administration Systèmes</h2>
-                    <span class="comp-count" style="border-color:#0078d4; color:#0078d4;">3 réalisations</span>
-                </div>
-                <p style="color: #94a3b8; font-size: 0.9rem; margin-bottom: 15px;">Gestion d'infrastructure Windows Server et services Linux.</p>
-                <ul>
-                    <li><a href="admin-ad.html">Active Directory, GPO & Profils Itinérants</a></li>
-                    <li><a href="admin-sauvegarde.html">Stratégies de Sauvegarde & Restauration</a></li>
-                    <li><a href="admin-web.html">Hébergement Web (IIS & Apache)</a></li>
-                </ul>
-                <div class="badge-container">
-                    <span class="badge" style="border-color:#0078d4; color:#0078d4;">Windows Server 2019</span>
-                    <span class="badge" style="border-color:#0078d4; color:#0078d4;">GPO</span>
-                    <span class="badge" style="border-color:#0078d4; color:#0078d4;">Linux Client</span>
-                </div>
-            </div>
-
-            <div class="comp-card" style="border-left-color: var(--accent-purple);">
-                <div class="comp-card-header">
-                    <div class="comp-card-icon" style="background: linear-gradient(135deg, var(--accent-purple), #c77dff);"><i class="fas fa-code"></i></div>
-                    <h2>Développement</h2>
-                    <span class="comp-count" style="border-color:var(--accent-purple); color:var(--accent-purple);">3 stacks</span>
-                </div>
-                <ul>
-                    <li>HTML / CSS / JavaScript</li>
-                    <li>PHP / SQL</li>
-                    <li>Python / Scripts Shell</li>
-                </ul>
-                <div class="badge-container">
-                    <span class="badge" style="border-color:var(--accent-purple); color:var(--accent-purple);">PHP</span>
-                    <span class="badge" style="border-color:var(--accent-purple); color:var(--accent-purple);">Python</span>
-                    <span class="badge" style="border-color:var(--accent-purple); color:var(--accent-purple);">JavaScript</span>
-                </div>
-            </div>
-
-            <div class="comp-card" style="border-left-color: var(--accent-orange);">
-                <div class="comp-card-header">
-                    <div class="comp-card-icon" style="background: linear-gradient(135deg, var(--accent-orange), #ffcc00);"><i class="fas fa-chart-bar"></i></div>
-                    <h2>Data & Analyse</h2>
-                    <span class="comp-count" style="border-color:var(--accent-orange); color:var(--accent-orange);">2 outils</span>
-                </div>
-                <ul>
-                    <li>Requêtes SQL / MariaDB</li>
-                    <li>Google Analytics (Balise Landing Page)</li>
-                </ul>
-                <div class="badge-container">
-                    <span class="badge" style="border-color:var(--accent-orange); color:var(--accent-orange);">SQL</span>
-                    <span class="badge" style="border-color:var(--accent-orange); color:var(--accent-orange);">Analytics</span>
-                </div>
-            </div>
-
+        <!-- TABS -->
+        <div class="year-tabs">
+            <button class="year-tab active" onclick="switchTab('an1', this)">
+                <i class="fas fa-graduation-cap"></i>
+                1ère Année
+                <span class="tab-badge">5 blocs</span>
+            </button>
+            <button class="year-tab" onclick="switchTab('an2', this)">
+                <i class="fas fa-rocket"></i>
+                2ème Année
+                <span class="tab-badge">En cours</span>
+            </button>
         </div>
+
+        <!-- ===== CONTENU 1ERE ANNEE ===== -->
+        <div class="tab-content active" id="tab-an1">
+            <div class="competences-grid">
+
+                <div class="comp-card">
+                    <div class="comp-card-header">
+                        <div class="comp-card-icon"><i class="fas fa-headset"></i></div>
+                        <h2>Support & Services</h2>
+                        <span class="comp-count">3 réalisations</span>
+                    </div>
+                    <ul>
+                        <li><a href="glpi-azure.html">Déployer GLPI sur machine virtuelle</a></li>
+                        <li><a href="glpi-patrimoine.html">Recenser et identifier les ressources (GLPI)</a></li>
+                        <li><a href="projet-trello.html">Travailler en méthode Agile (Trello)</a></li>
+                    </ul>
+                    <div class="badge-container">
+                        <span class="badge">GLPI</span>
+                        <span class="badge">Azure</span>
+                        <span class="badge">Trello</span>
+                    </div>
+                </div>
+
+                <div class="comp-card">
+                    <div class="comp-card-header">
+                        <div class="comp-card-icon"><i class="fas fa-network-wired"></i></div>
+                        <h2>Infrastructure Réseau</h2>
+                        <span class="comp-count">3 réalisations</span>
+                    </div>
+                    <p style="color:#94a3b8;font-size:0.9rem;margin-bottom:15px;">VLAN, Routage, DNS, DHCP, Wi-Fi.</p>
+                    <ul>
+                        <li><a href="reseau-vlan.html">VLANs, Trunking & Routage inter-VLAN</a></li>
+                        <li><a href="reseau-services.html">Services DHCP & DNS (Cisco & Windows)</a></li>
+                        <li><a href="reseau-wifi.html">Configuration de points d'accès Wi-Fi</a></li>
+                    </ul>
+                    <div class="badge-container">
+                        <span class="badge">Cisco CLI</span>
+                        <span class="badge">IPv4/IPv6</span>
+                        <span class="badge">Packet Tracer</span>
+                    </div>
+                </div>
+
+                <div class="comp-card" style="border-left-color:#0078d4;">
+                    <div class="comp-card-header">
+                        <div class="comp-card-icon" style="background:linear-gradient(135deg,#0078d4,#00d4ff);"><i class="fab fa-windows"></i></div>
+                        <h2>Administration Systèmes</h2>
+                        <span class="comp-count" style="border-color:#0078d4;color:#0078d4;">3 réalisations</span>
+                    </div>
+                    <p style="color:#94a3b8;font-size:0.9rem;margin-bottom:15px;">Windows Server et services Linux.</p>
+                    <ul>
+                        <li><a href="admin-ad.html">Active Directory, GPO & Profils Itinérants</a></li>
+                        <li><a href="admin-sauvegarde.html">Stratégies de Sauvegarde & Restauration</a></li>
+                        <li><a href="admin-web.html">Hébergement Web (IIS & Apache)</a></li>
+                    </ul>
+                    <div class="badge-container">
+                        <span class="badge" style="border-color:#0078d4;color:#0078d4;">Windows Server 2019</span>
+                        <span class="badge" style="border-color:#0078d4;color:#0078d4;">GPO</span>
+                        <span class="badge" style="border-color:#0078d4;color:#0078d4;">Linux</span>
+                    </div>
+                </div>
+
+                <div class="comp-card" style="border-left-color:var(--accent-purple);">
+                    <div class="comp-card-header">
+                        <div class="comp-card-icon" style="background:linear-gradient(135deg,var(--accent-purple),#c77dff);"><i class="fas fa-code"></i></div>
+                        <h2>Développement</h2>
+                        <span class="comp-count" style="border-color:var(--accent-purple);color:var(--accent-purple);">3 stacks</span>
+                    </div>
+                    <ul>
+                        <li>HTML / CSS / JavaScript</li>
+                        <li>PHP / SQL</li>
+                        <li>Python / Scripts Shell</li>
+                    </ul>
+                    <div class="badge-container">
+                        <span class="badge" style="border-color:var(--accent-purple);color:var(--accent-purple);">PHP</span>
+                        <span class="badge" style="border-color:var(--accent-purple);color:var(--accent-purple);">Python</span>
+                        <span class="badge" style="border-color:var(--accent-purple);color:var(--accent-purple);">JavaScript</span>
+                    </div>
+                </div>
+
+                <div class="comp-card" style="border-left-color:var(--accent-orange);">
+                    <div class="comp-card-header">
+                        <div class="comp-card-icon" style="background:linear-gradient(135deg,var(--accent-orange),#ffcc00);"><i class="fas fa-chart-bar"></i></div>
+                        <h2>Data & Analyse</h2>
+                        <span class="comp-count" style="border-color:var(--accent-orange);color:var(--accent-orange);">2 outils</span>
+                    </div>
+                    <ul>
+                        <li>Requêtes SQL / MariaDB</li>
+                        <li>Google Analytics (Balise Landing Page)</li>
+                    </ul>
+                    <div class="badge-container">
+                        <span class="badge" style="border-color:var(--accent-orange);color:var(--accent-orange);">SQL</span>
+                        <span class="badge" style="border-color:var(--accent-orange);color:var(--accent-orange);">Analytics</span>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- ===== CONTENU 2EME ANNEE ===== -->
+        <div class="tab-content" id="tab-an2">
+
+            <div class="coming-soon-banner">
+                <p><i class="fas fa-clock" style="margin-right:8px;"></i> Contenu en cours de préparation — Rentrée septembre 2026</p>
+            </div>
+
+            <div class="competences-grid">
+
+                <div class="comp-card upcoming">
+                    <div class="comp-card-header">
+                        <div class="comp-card-icon" style="background:linear-gradient(135deg,#ef4444,#f97316);"><i class="fas fa-shield-alt"></i></div>
+                        <h2>Cybersécurité avancée</h2>
+                    </div>
+                    <ul class="module-list">
+                        <li><i class="fas fa-lock"></i> Audit et tests de pénétration</li>
+                        <li><i class="fas fa-bug"></i> Analyse de vulnérabilités</li>
+                        <li><i class="fas fa-fire"></i> Firewall & IDS/IPS</li>
+                        <li><i class="fas fa-file-shield"></i> RGPD & conformité</li>
+                    </ul>
+                    <div class="badge-container">
+                        <span class="badge" style="border-color:#ef4444;color:#ef4444;">Kali Linux</span>
+                        <span class="badge" style="border-color:#ef4444;color:#ef4444;">Metasploit</span>
+                        <span class="badge" style="border-color:#ef4444;color:#ef4444;">Wireshark</span>
+                    </div>
+                </div>
+
+                <div class="comp-card upcoming">
+                    <div class="comp-card-header">
+                        <div class="comp-card-icon" style="background:linear-gradient(135deg,#0ea5e9,#6366f1);"><i class="fas fa-cloud"></i></div>
+                        <h2>Cloud & Virtualisation</h2>
+                    </div>
+                    <ul class="module-list">
+                        <li><i class="fab fa-microsoft"></i> Azure avancé (IaaS, PaaS)</li>
+                        <li><i class="fas fa-cubes"></i> Conteneurisation Docker</li>
+                        <li><i class="fas fa-server"></i> Proxmox / VMware</li>
+                        <li><i class="fas fa-infinity"></i> CI/CD & DevOps</li>
+                    </ul>
+                    <div class="badge-container">
+                        <span class="badge" style="border-color:#0ea5e9;color:#0ea5e9;">Azure</span>
+                        <span class="badge" style="border-color:#0ea5e9;color:#0ea5e9;">Docker</span>
+                        <span class="badge" style="border-color:#0ea5e9;color:#0ea5e9;">Proxmox</span>
+                    </div>
+                </div>
+
+                <div class="comp-card upcoming">
+                    <div class="comp-card-header">
+                        <div class="comp-card-icon" style="background:linear-gradient(135deg,#10b981,#06b6d4);"><i class="fas fa-project-diagram"></i></div>
+                        <h2>Réseaux avancés</h2>
+                    </div>
+                    <ul class="module-list">
+                        <li><i class="fas fa-route"></i> Protocoles de routage (OSPF, BGP)</li>
+                        <li><i class="fas fa-shield-virus"></i> VPN & tunneling</li>
+                        <li><i class="fas fa-eye"></i> Supervision réseau (Zabbix, PRTG)</li>
+                        <li><i class="fas fa-wifi"></i> Wi-Fi entreprise (WPA3, 802.1X)</li>
+                    </ul>
+                    <div class="badge-container">
+                        <span class="badge" style="border-color:#10b981;color:#10b981;">OSPF</span>
+                        <span class="badge" style="border-color:#10b981;color:#10b981;">VPN</span>
+                        <span class="badge" style="border-color:#10b981;color:#10b981;">Zabbix</span>
+                    </div>
+                </div>
+
+                <div class="comp-card upcoming">
+                    <div class="comp-card-header">
+                        <div class="comp-card-icon" style="background:linear-gradient(135deg,var(--accent-purple),#ec4899);"><i class="fas fa-robot"></i></div>
+                        <h2>Automatisation & Scripts</h2>
+                    </div>
+                    <ul class="module-list">
+                        <li><i class="fab fa-python"></i> Python avancé (automatisation)</li>
+                        <li><i class="fas fa-terminal"></i> PowerShell & Bash avancés</li>
+                        <li><i class="fas fa-code-branch"></i> Ansible (infrastructure as code)</li>
+                        <li><i class="fas fa-cog"></i> Gestion de configuration</li>
+                    </ul>
+                    <div class="badge-container">
+                        <span class="badge" style="border-color:var(--accent-purple);color:var(--accent-purple);">Python</span>
+                        <span class="badge" style="border-color:var(--accent-purple);color:var(--accent-purple);">PowerShell</span>
+                        <span class="badge" style="border-color:var(--accent-purple);color:var(--accent-purple);">Ansible</span>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
     </main>
 
+    <footer class="footer">
+        <div class="max-width">
+            <div class="footer-content">
+                <div class="footer-left"><p>&copy; 2025 Harouna Diakite. Tous droits réservés.</p></div>
+                <div class="footer-right">
+                    <a href="#" class="scroll-top"><i class="fas fa-arrow-up"></i> Retour en haut</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
     <script src="script-animation.js"></script>
+    <script>
+        function switchTab(year, btn) {
+            // Désactiver tous les tabs
+            document.querySelectorAll('.year-tab').forEach(t => t.classList.remove('active'));
+            document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+            // Activer le bon
+            btn.classList.add('active');
+            document.getElementById('tab-' + year).classList.add('active');
+        }
+    </script>
 </body>
 </html>

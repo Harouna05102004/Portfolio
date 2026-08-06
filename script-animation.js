@@ -376,10 +376,9 @@ window.addEventListener('beforeunload', () => {
 
 // ==================== TRANSITIONS DE PAGE FLUIDES ==================== //
 function initPageTransitions() {
-    // Corriger la page noire quand on revient en arrière
+    // Corriger l'opacité quand on revient en arrière (SANS transform pour ne pas casser la navbar fixed)
     window.addEventListener('pageshow', function() {
         document.body.style.opacity = '1';
-        document.body.style.transform = 'translateY(0)';
         document.body.classList.remove('page-transition-out');
     });
 

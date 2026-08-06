@@ -1,0 +1,538 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-93C1CT31KL"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-93C1CT31KL');
+    </script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BTS SIO SISR | Harouna Diakite</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <style>
+        :root {
+            --accent-cyan: #00d4ff;
+            --accent-purple: #9d50bb;
+            --bg-dark: #020617;
+            --card-bg: #0f172a;
+        }
+        body { background-color: var(--bg-dark); color: white; font-family: 'Inter', sans-serif; margin: 0; }
+
+        .gradient-text {
+            background: linear-gradient(90deg, #00d4ff, #9d50bb);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        /* ===== HEADER ===== */
+        .bts-header {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 130px 30px 0;
+        }
+
+        .bts-header .label {
+            font-size: 0.78rem;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--accent-cyan);
+            margin-bottom: 12px;
+        }
+
+        .bts-header h1 {
+            font-size: 3rem;
+            margin: 0 0 10px;
+            line-height: 1.1;
+        }
+
+        .bts-header p {
+            color: #94a3b8;
+            font-size: 1.05rem;
+            max-width: 600px;
+            line-height: 1.7;
+            margin: 0 0 40px;
+        }
+
+        /* ===== TABS ===== */
+        .year-tabs {
+            display: flex;
+            gap: 0;
+            background: rgba(255,255,255,0.04);
+            border: 1px solid rgba(255,255,255,0.08);
+            border-radius: 16px;
+            padding: 6px;
+            width: fit-content;
+            margin-bottom: 50px;
+        }
+
+        .year-tab {
+            padding: 11px 28px;
+            border-radius: 12px;
+            border: none;
+            background: transparent;
+            color: #94a3b8;
+            font-size: 0.95rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-family: inherit;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .year-tab:hover { color: white; }
+
+        .year-tab.active {
+            background: linear-gradient(135deg, var(--accent-cyan), var(--accent-purple));
+            color: white;
+            box-shadow: 0 4px 20px rgba(0, 212, 255, 0.3);
+        }
+
+        /* ===== GRILLE COMPETENCES ===== */
+        .comp-grid {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 30px;
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 20px;
+        }
+
+        .comp-ref-card {
+            background: var(--card-bg);
+            border: 1px solid rgba(255,255,255,0.07);
+            border-radius: 18px;
+            padding: 28px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            text-decoration: none;
+            display: block;
+        }
+
+        .comp-ref-card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0;
+            width: 4px;
+            height: 100%;
+            background: linear-gradient(180deg, var(--accent-cyan), var(--accent-purple));
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .comp-ref-card:hover {
+            border-color: rgba(0, 212, 255, 0.25);
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0, 212, 255, 0.1);
+        }
+
+        .comp-ref-card:hover::before { opacity: 1; }
+
+        .comp-ref-card .code {
+            font-size: 1.3rem;
+            font-weight: 800;
+            color: var(--accent-cyan);
+            margin-bottom: 10px;
+            font-family: 'Courier New', monospace;
+        }
+
+        .comp-ref-card .title-comp {
+            font-size: 0.95rem;
+            color: #e2e8f0;
+            font-weight: 600;
+            margin-bottom: 8px;
+            line-height: 1.4;
+        }
+
+        .comp-ref-card .desc {
+            font-size: 0.82rem;
+            color: #64748b;
+            line-height: 1.5;
+            margin-bottom: 18px;
+        }
+
+        .comp-ref-card .detail-link {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            font-size: 0.82rem;
+            color: #94a3b8;
+            border-top: 1px solid rgba(255,255,255,0.06);
+            padding-top: 14px;
+            transition: color 0.2s;
+        }
+
+        .comp-ref-card:hover .detail-link { color: var(--accent-cyan); }
+
+        /* Badges statut */
+        .status-pill {
+            font-size: 0.7rem;
+            padding: 3px 10px;
+            border-radius: 20px;
+            font-weight: 600;
+        }
+
+        .status-done {
+            background: rgba(16, 185, 129, 0.15);
+            color: #10b981;
+            border: 1px solid rgba(16, 185, 129, 0.3);
+        }
+
+        .status-progress {
+            background: rgba(245, 158, 11, 0.15);
+            color: #f59e0b;
+            border: 1px solid rgba(245, 158, 11, 0.3);
+        }
+
+        .status-upcoming {
+            background: rgba(100, 116, 139, 0.15);
+            color: #64748b;
+            border: 1px solid rgba(100, 116, 139, 0.3);
+        }
+
+        /* ===== CARTE "A venir" ===== */
+        .comp-ref-card.upcoming {
+            opacity: 0.5;
+            cursor: default;
+        }
+        .comp-ref-card.upcoming:hover {
+            transform: none;
+            box-shadow: none;
+            border-color: rgba(255,255,255,0.07);
+        }
+        .comp-ref-card.upcoming:hover::before { opacity: 0; }
+
+        /* ===== TAB CONTENT ===== */
+        .tab-content { display: none; }
+        .tab-content.active { display: block; }
+
+        /* ===== SECTION PDF ===== */
+        .pdf-section {
+            max-width: 1200px;
+            margin: 60px auto 0;
+            padding: 0 30px 80px;
+        }
+
+        .pdf-card {
+            background: linear-gradient(135deg, rgba(0,212,255,0.07), rgba(157,80,187,0.07));
+            border: 1px solid rgba(0,212,255,0.2);
+            border-radius: 20px;
+            padding: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 30px;
+            flex-wrap: wrap;
+        }
+
+        .pdf-card-left { display: flex; align-items: center; gap: 20px; }
+
+        .pdf-icon {
+            width: 60px;
+            height: 60px;
+            border-radius: 14px;
+            background: linear-gradient(135deg, #ef4444, #f97316);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.6rem;
+            flex-shrink: 0;
+        }
+
+        .pdf-info h3 { margin: 0 0 5px; font-size: 1.2rem; }
+        .pdf-info p { margin: 0; color: #94a3b8; font-size: 0.88rem; }
+
+        .btn-download {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: linear-gradient(135deg, var(--accent-cyan), var(--accent-purple));
+            color: white;
+            text-decoration: none;
+            padding: 14px 28px;
+            border-radius: 12px;
+            font-weight: 700;
+            font-size: 0.95rem;
+            transition: all 0.3s ease;
+            white-space: nowrap;
+        }
+
+        .btn-download:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(0, 212, 255, 0.4);
+        }
+
+        /* ===== NAVBAR ===== */
+        .max-width { max-width: 1300px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; padding: 0 20px; }
+        .logo a { font-size: 1.8rem; font-weight: 700; color: #fff; text-decoration: none; }
+        .menu { list-style: none; display: flex; gap: 30px; margin: 0; padding: 0; }
+        .menu li a { color: #fff; text-decoration: none; font-weight: 500; transition: 0.3s; }
+        .menu li a:hover, .menu li a.active { color: var(--accent-cyan); }
+
+        .dot { width: 8px; height: 8px; border-radius: 50%; background: var(--accent-cyan); animation: pulse 2s infinite; display: inline-block; }
+        @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.4} }
+
+        /* ===== LEGENDE ===== */
+        .legend {
+            max-width: 1200px;
+            margin: 0 auto 30px;
+            padding: 0 30px;
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+            align-items: center;
+        }
+
+        .legend span {
+            display: flex;
+            align-items: center;
+            gap: 7px;
+            font-size: 0.82rem;
+            color: #94a3b8;
+        }
+
+        @media (max-width: 768px) {
+            .bts-header h1 { font-size: 2rem; }
+            .comp-grid { grid-template-columns: 1fr; padding: 0 16px; }
+            .pdf-card { flex-direction: column; text-align: center; }
+            .pdf-card-left { flex-direction: column; text-align: center; }
+            .year-tab { padding: 10px 16px; font-size: 0.85rem; }
+            .bts-header { padding: 120px 16px 0; }
+            .pdf-section { padding: 0 16px 60px; }
+            .legend { padding: 0 16px; }
+        }
+    </style>
+</head>
+<body>
+    <canvas id="bg-canvas"></canvas>
+
+    <nav class="navbar">
+        <div class="max-width nav-content">
+            <div class="logo"><a href="index.html">Harouna<span class="gradient-text">.</span></a></div>
+            <button class="menu-toggle" aria-label="Menu"><span></span><span></span><span></span></button>
+                        <ul class="menu">
+                <li><a href="index.html">Accueil</a></li>
+                <li><a href="index.html#about">À propos</a></li>
+                <li><a href="competences.html">Compétences</a></li>
+                <li><a href="projets.html">Réalisations</a></li>
+                <li><a href="bts-sio.html" class="active">BTS SIO</a></li>
+                <li><a href="index.html#contact">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- HEADER -->
+    <div class="bts-header">
+        <p class="label">Référentiel de compétences</p>
+        <h1>Parcours <span class="gradient-text">BTS SIO</span></h1>
+        <p>Option SISR — Systèmes d'Infrastructure, Solutions et Réseaux. Retrouvez ici les compétences du référentiel officiel acquises au cours de ma formation à l'EFREI Paris.</p>
+
+        <!-- TABS -->
+        <div class="year-tabs">
+            <button class="year-tab active" onclick="switchTab('an1', this)">
+                <i class="fas fa-graduation-cap"></i> 1ère Année
+            </button>
+            <button class="year-tab" onclick="switchTab('an2', this)">
+                <i class="fas fa-rocket"></i> 2ème Année
+            </button>
+        </div>
+    </div>
+
+    <!-- ===== 1ERE ANNEE ===== -->
+    <div class="tab-content active" id="tab-an1">
+
+        <!-- Légende -->
+        <div class="legend">
+            <span><span class="status-pill status-done">✓ Acquis</span> Compétence validée</span>
+            <span><span class="status-pill status-progress">⟳ En cours</span> En cours d'acquisition</span>
+        </div>
+
+        <div class="comp-grid">
+
+            <a href="glpi-patrimoine.html" class="comp-ref-card">
+                <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:8px;">
+                    <span class="code">C1</span>
+                    <span class="status-pill status-done">✓ Acquis</span>
+                </div>
+                <div class="title-comp">Recensement et identification des ressources numériques</div>
+                <div class="desc">Inventaire du parc informatique via GLPI Agent. Remontée automatique des informations matérielles et logicielles.</div>
+                <div class="detail-link"><span>Voir la réalisation</span><i class="fas fa-arrow-right"></i></div>
+            </a>
+
+            <a href="projet-trello.html" class="comp-ref-card">
+                <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:8px;">
+                    <span class="code">C7</span>
+                    <span class="status-pill status-done">✓ Acquis</span>
+                </div>
+                <div class="title-comp">Collecte, suivi et orientation des demandes</div>
+                <div class="desc">Gestion des tickets et suivi des demandes via GLPI. Organisation en méthode Agile avec tableau Kanban Trello.</div>
+                <div class="detail-link"><span>Voir la réalisation</span><i class="fas fa-arrow-right"></i></div>
+            </a>
+
+            <a href="glpi-azure.html" class="comp-ref-card">
+                <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:8px;">
+                    <span class="code">C11</span>
+                    <span class="status-pill status-done">✓ Acquis</span>
+                </div>
+                <div class="title-comp">Déploiement d'un service</div>
+                <div class="desc">Déploiement de GLPI sur Azure (cloud) et VirtualBox (local) avec stack LAMP complète sur Debian.</div>
+                <div class="detail-link"><span>Voir la réalisation</span><i class="fas fa-arrow-right"></i></div>
+            </a>
+
+            <a href="admin-ad.html" class="comp-ref-card">
+                <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:8px;">
+                    <span class="code">C14</span>
+                    <span class="status-pill status-done">✓ Acquis</span>
+                </div>
+                <div class="title-comp">Gestion des identités et des accès</div>
+                <div class="desc">Mise en place d'Active Directory, GPO, profils itinérants et contrôle des accès sur Windows Server 2019.</div>
+                <div class="detail-link"><span>Voir la réalisation</span><i class="fas fa-arrow-right"></i></div>
+            </a>
+
+            <a href="reseau-vlan.html" class="comp-ref-card">
+                <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:8px;">
+                    <span class="code">C17</span>
+                    <span class="status-pill status-done">✓ Acquis</span>
+                </div>
+                <div class="title-comp">Conception et déploiement d'une infrastructure réseau</div>
+                <div class="desc">Architecture réseau segmentée avec VLANs, routage inter-VLAN, DHCP/DNS Cisco et Wi-Fi sécurisé WPA2/WPA3.</div>
+                <div class="detail-link"><span>Voir la réalisation</span><i class="fas fa-arrow-right"></i></div>
+            </a>
+
+            <a href="admin-sauvegarde.html" class="comp-ref-card">
+                <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:8px;">
+                    <span class="code">C++</span>
+                    <span class="status-pill status-done">✓ Acquis</span>
+                </div>
+                <div class="title-comp">Continuité d'activité et sauvegarde</div>
+                <div class="desc">Stratégie de sauvegarde planifiée, Shadow Copies et tests de restauration complète suite à incident simulé.</div>
+                <div class="detail-link"><span>Voir la réalisation</span><i class="fas fa-arrow-right"></i></div>
+            </a>
+
+        </div>
+    </div>
+
+    <!-- ===== 2EME ANNEE ===== -->
+    <div class="tab-content" id="tab-an2">
+
+        <div style="max-width:1200px;margin:0 auto 30px;padding:0 30px;">
+            <div style="background:linear-gradient(135deg,rgba(0,212,255,0.08),rgba(157,80,187,0.08));border:1px dashed rgba(0,212,255,0.3);border-radius:16px;padding:18px 24px;display:flex;align-items:center;gap:12px;">
+                <i class="fas fa-clock" style="color:var(--accent-cyan);"></i>
+                <p style="margin:0;color:var(--accent-cyan);font-size:0.92rem;">Compétences de 2ème année — Rentrée septembre 2026</p>
+            </div>
+        </div>
+
+        <div class="comp-grid">
+
+            <div class="comp-ref-card upcoming">
+                <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:8px;">
+                    <span class="code">C2</span>
+                    <span class="status-pill status-upcoming">À venir</span>
+                </div>
+                <div class="title-comp">Exploitation des données</div>
+                <div class="desc">Analyse et exploitation des données du SI. Tableaux de bord, rapports et indicateurs de performance.</div>
+                <div class="detail-link"><span>Non encore réalisé</span><i class="fas fa-lock"></i></div>
+            </div>
+
+            <div class="comp-ref-card upcoming">
+                <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:8px;">
+                    <span class="code">C8</span>
+                    <span class="status-pill status-upcoming">À venir</span>
+                </div>
+                <div class="title-comp">Sécurisation des équipements et des usages</div>
+                <div class="desc">Audit de sécurité, durcissement des systèmes, politique de sécurité et conformité RGPD.</div>
+                <div class="detail-link"><span>Non encore réalisé</span><i class="fas fa-lock"></i></div>
+            </div>
+
+            <div class="comp-ref-card upcoming">
+                <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:8px;">
+                    <span class="code">C12</span>
+                    <span class="status-pill status-upcoming">À venir</span>
+                </div>
+                <div class="title-comp">Supervision et disponibilité des services</div>
+                <div class="desc">Mise en place de la supervision réseau avec Zabbix/PRTG, alertes et tableaux de bord de disponibilité.</div>
+                <div class="detail-link"><span>Non encore réalisé</span><i class="fas fa-lock"></i></div>
+            </div>
+
+            <div class="comp-ref-card upcoming">
+                <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:8px;">
+                    <span class="code">C18</span>
+                    <span class="status-pill status-upcoming">À venir</span>
+                </div>
+                <div class="title-comp">Cloud et virtualisation avancée</div>
+                <div class="desc">Déploiement d'infrastructures cloud Azure, conteneurisation Docker et gestion de clusters.</div>
+                <div class="detail-link"><span>Non encore réalisé</span><i class="fas fa-lock"></i></div>
+            </div>
+
+            <div class="comp-ref-card upcoming">
+                <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:8px;">
+                    <span class="code">C20</span>
+                    <span class="status-pill status-upcoming">À venir</span>
+                </div>
+                <div class="title-comp">Automatisation et scripting</div>
+                <div class="desc">Automatisation des tâches d'administration via PowerShell, Python et Ansible (infrastructure as code).</div>
+                <div class="detail-link"><span>Non encore réalisé</span><i class="fas fa-lock"></i></div>
+            </div>
+
+            <div class="comp-ref-card upcoming">
+                <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:8px;">
+                    <span class="code">E5</span>
+                    <span class="status-pill status-upcoming">À venir</span>
+                </div>
+                <div class="title-comp">Développement professionnel et personnel</div>
+                <div class="desc">Organisation du développement professionnel, veille technologique, alternance et certification.</div>
+                <div class="detail-link"><span>Non encore réalisé</span><i class="fas fa-lock"></i></div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- ===== SECTION PDF ===== -->
+    <div class="pdf-section">
+        <div class="pdf-card">
+            <div class="pdf-card-left">
+                <div class="pdf-icon">
+                    <i class="fas fa-file-pdf" style="color:white;"></i>
+                </div>
+                <div class="pdf-info">
+                    <h3>Tableau de synthèse complet (E4)</h3>
+                    <p>Document officiel BTS SIO SISR — Compétences acquises en formation et en entreprise<br>
+                    <span style="color:#64748b;font-size:0.8rem;">tableau-de-synthese.pdf</span></p>
+                </div>
+            </div>
+            <a href="tableau-de-synthese.pdf" download class="btn-download">
+                <i class="fas fa-download"></i>
+                Télécharger le PDF
+            </a>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <div class="max-width">
+            <div class="footer-content">
+                <div class="footer-left"><p>&copy; 2025 Harouna Diakite. Tous droits réservés.</p></div>
+                <div class="footer-right">
+                    <a href="#" class="scroll-top"><i class="fas fa-arrow-up"></i> Retour en haut</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script-animation.js"></script>
+    <script>
+        function switchTab(year, btn) {
+            document.querySelectorAll('.year-tab').forEach(t => t.classList.remove('active'));
+            document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+            btn.classList.add('active');
+            document.getElementById('tab-' + year).classList.add('active');
+        }
+    </script>
+</body>
+</html>
