@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-93C1CT31KL"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-93C1CT31KL');
+</script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TP Apache & HTTPS | Harouna</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <canvas id="bg-canvas"></canvas>
+    <nav class="navbar"><div class="max-width"><div class="logo"><a href="index.html">Harouna<span class="gradient-text">.</span></a></div></div></nav>
+
+    <main class="detail-page">
+        <a href="bts-sio.html" class="back-btn"><i class="fas fa-arrow-left"></i> Retour au BTS SIO</a>
+        <div class="status-badge"><span class="dot"></span> Travaux Pratiques SISR · 2ème année</div>
+        <h1 class="title" style="text-align: left; padding-top: 0;">Hébergement Web mutualisé <span class="gradient-text">& passage en HTTPS</span></h1>
+
+        <section class="realisation">
+            <h2><i class="fas fa-building"></i> Contexte</h2>
+            <p>La société <strong>WebHost PME</strong> souhaite proposer une offre d'hébergement mutualisé : un serveur doit héberger plusieurs applications clientes indépendantes. Objectif du TP : installer Apache, créer un VirtualHost et sécuriser le site en HTTPS avec un certificat auto-signé.</p>
+            <div class="evidence"><i class="fas fa-info-circle"></i> Environnement : machine virtuelle <strong>Debian 12</strong> sous VirtualBox (IP 172.20.10.3).</div>
+        </section>
+
+        <section class="realisation">
+            <h2><i class="fas fa-server"></i> Étape 1 — Installation d'Apache</h2>
+            <p>Connexion SSH à la VM, puis passage en super-utilisateur et installation du serveur web.</p>
+            <ul>
+                <li>Connexion : <code>ssh harouna@172.20.10.3</code> (clé bloquée ? <code>ssh-keygen -R 172.20.10.3</code>)</li>
+                <li>Super-utilisateur : <code>su -</code></li>
+                <li>Mise à jour et installation : <code>apt update</code> puis <code>apt install apache2</code></li>
+                <li>Vérification du service : <code>systemctl status apache2</code> → <strong>active (running)</strong></li>
+            </ul>
+            <div class="evidence"><i class="fas fa-check"></i> Page par défaut dans <code>/var/www/html</code>, accessible via <code>http://172.20.10.3</code> (« Apache2 Debian Default Page »).</div>
+        </section>
+
+        <section class="realisation">
+            <h2><i class="fas fa-toggle-on"></i> Étape 2 — Activation des modules SSL</h2>
+            <p>Activation du chiffrement SSL/TLS et de la réécriture pour la redirection HTTP → HTTPS.</p>
+            <ul>
+                <li><code>a2enmod ssl</code> — active le module SSL</li>
+                <li><code>a2enmod rewrite</code> — active la réécriture d'URL</li>
+                <li><code>systemctl restart apache2</code> — applique la configuration</li>
+                <li>Vérification : <code>a2query -m ssl</code> → <em>ssl (enabled by site administrator)</em></li>
+            </ul>
+        </section>
+
+        <section class="realisation">
+            <h2><i class="fas fa-certificate"></i> Étape 3 — Certificat auto-signé SSL/TLS</h2>
+            <p>Génération d'un certificat auto-signé valable 10 ans (clé RSA 4096 bits, signature SHA-512).</p>
+            <div class="evidence" style="border-left-color: var(--accent);">
+                <i class="fas fa-terminal"></i> <code>openssl req -newkey rsa:4096 -x509 -sha512 -out mycert.pem -keyout mykey.key -days 3650</code>
+            </div>
+            <ul>
+                <li>Certificat public : <code>/etc/ssl/certs/mycert.pem</code></li>
+                <li>Clé privée : <code>/etc/ssl/private/mykey.key</code></li>
+                <li>Sécurisation des droits : <code>chmod 600 /etc/ssl/private/mykey.key</code> et <code>chown root:root /etc/ssl/private/mykey.key</code></li>
+            </ul>
+        </section>
+
+        <section class="realisation">
+            <h2><i class="fas fa-file-code"></i> Étape 4 — Fichier de configuration VirtualHost</h2>
+            <p>Création du fichier <code>/etc/apache2/sites-available/mon-site.conf</code> avec deux blocs : un bloc HTTP (port 80) qui redirige tout le trafic vers HTTPS, et un bloc HTTPS (port 443) qui assure la liaison sécurisée.</p>
+            <div class="evidence" style="border-left-color: var(--accent-cyan); font-family: monospace; white-space: pre-wrap; font-size: 0.82rem; line-height: 1.6;">&lt;VirtualHost *:80&gt;
+    ServerName 172.20.10.3
+    Redirect permanent / https://172.20.10.3/
+&lt;/VirtualHost&gt;
+
+&lt;VirtualHost *:443&gt;
+    ServerName 172.20.10.3
+    DocumentRoot /var/www/html
+
+    SSLEngine on
+    SSLCertificateFile /etc/ssl/certs/mycert.pem
+    SSLCertificateKeyFile /etc/ssl/private/mykey.key
+
+    SSLProtocol all -SSLv3 -TLSv1 -TLSv1.1
+    SSLCipherSuite HIGH:!aNULL:!MD5
+
+    &lt;Directory /var/www/html&gt;
+        Options Indexes FollowSymLinks
+        AllowOverride All
+        Require all granted
+    &lt;/Directory&gt;
+
+    ErrorLog ${APACHE_LOG_DIR}/mon-site_error.log
+    CustomLog ${APACHE_LOG_DIR}/mon-site_access.log combined
+&lt;/VirtualHost&gt;</div>
+        </section>
+
+        <section class="realisation">
+            <h2><i class="fas fa-check-double"></i> Étape 5 — Activation du site et tests</h2>
+            <ul>
+                <li>Activation du site : <code>a2ensite mon-site.conf</code></li>
+                <li>Test de la syntaxe : <code>apache2ctl configtest</code> → <strong>Syntax OK</strong></li>
+                <li>Redémarrage : <code>systemctl restart apache2</code></li>
+                <li>Côté client Windows : ajout du domaine dans <code>C:\Windows\System32\drivers\etc\hosts</code> et import du certificat SSL.</li>
+            </ul>
+            <div class="evidence"><i class="fas fa-lock"></i> <strong>Résultat :</strong> le site bascule automatiquement de HTTP (port 80) vers HTTPS (port 443) avec la liaison SSL/TLS active.</div>
+        </section>
+
+        <section class="realisation" style="text-align: center;">
+            <h2><i class="fas fa-file-pdf"></i> Documentation complète</h2>
+            <p>Le pas-à-pas détaillé avec toutes les captures d'écran est disponible en PDF.</p>
+            <a href="tp-apache-https.pdf" target="_blank" class="btn-primary" style="display:inline-flex;">
+                <i class="fas fa-download"></i> Télécharger la documentation (PDF)
+            </a>
+        </section>
+    </main>
+
+    <script src="script-animation.js"></script>
+</body>
+</html>
